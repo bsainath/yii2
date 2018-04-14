@@ -26,7 +26,7 @@ $config = [
         ],
         'db' => $db,
     ],
-    'params' => $params,
+     'params' => $params,
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
