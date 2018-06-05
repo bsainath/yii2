@@ -31,6 +31,9 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'EncryptDecrypt' => [
+            'class' => 'app\components\EncryptDecryptComponent'
+        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
