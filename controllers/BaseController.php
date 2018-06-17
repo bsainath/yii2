@@ -43,7 +43,7 @@ class BaseController extends Controller {
 					) );
 	}
 	
-	die('ds');
+	//die('ds');
 		$session = \Yii::$app->session;
 		if(empty($session['logged_user_fullname'])){
 			

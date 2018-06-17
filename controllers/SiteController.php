@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\TblPrtCities;
+use app\models\TblPrtLookupType;
+use app\models\TblPrtMembers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -10,6 +13,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use yii\data\Pagination;
 
 class SiteController extends Controller
 {
@@ -63,9 +67,139 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->layout=false;
-        return $this->render('index');
+
+        $parties= TblPrtLookupType::findOne(['lookup_id'=>2]);
+
+        $profiles= TblPrtLookupType::findOne(['lookup_id'=>1]);
+
+        $members = TblPrtMembers::find()
+                    ->joinWith('city')
+            ->joinWith('party')
+            ->joinWith('profileType');
+
+
+
+       // $sql="SELECT tbc.*,tblp.option_name as party,tbc.city_name as city_name,tblpt.option_name as profile_type  FROM tbl_prt_members tbm LEFT JOIN tbl_prt_cities tbc ON tbc.city_id=tbm.city_id
+        //      LEFT JOIN tbl_prt_lookup_options tblp ON tblp.option_id=tbm.party_id LEFT JOIN tbl_prt_lookup_options tblpt ON tblpt.option_id=tbm.profile_type_id";
+
+//$where_sql=' WHERE tbm.member_id!=""';
+$append_where=false;
+        if(!empty(Yii::$app->request->get('name'))){
+
+           // $where_sql .=' AND tbc.name like %'.Yii::$app->request->get('name').'%';
+            $members->where( ['like', TblPrtMembers::tableName().'.name', Yii::$app->request->get('name')]);
+        }
+
+        if(!empty(Yii::$app->request->get('party'))){
+
+            if($append_where){  $members->andWhere( [ 'party.option_id'=>Yii::$app->request->get('party')]); }else{
+                $members->Where( ['party.option_id' => Yii::$app->request->get('party')]);
+            }
+          //  $where_sql .=' AND tblp.option_id ='.Yii::$app->request->get('party').'';
+            $append_where=true;
+        }
+
+        if(!empty(Yii::$app->request->get('profile'))){
+
+            if($append_where){  $members->andWhere( [ 'profile.option_id'=> Yii::$app->request->get('profile')]); }else{
+                $members->Where( [ 'profile.option_id'=> Yii::$app->request->get('profile')]);
+            }
+            //$where_sql .=' AND tblpt.option_id ='.Yii::$app->request->get('profile').'';
+            $append_where=true;
+        }
+
+        if(!empty(Yii::$app->request->get('state'))){
+
+            if($append_where){  $members->andWhere( [ TblPrtCities::tableName().'.state_id'=> Yii::$app->request->get('state')]); }else{
+                $members->Where( [ TblPrtCities::tableName().'.state_id'=> Yii::$app->request->get('state')]);
+            }
+           // $where_sql .=' AND tbc.state_id ='.Yii::$app->request->get('state').'';
+        }
+
+        $countQuery = clone $members;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>1]);
+       // $pages->limit=1;
+
+        /*if(!empty(Yii::$app->request->get('page')) && Yii::$app->request->get('page')>1 ){
+            $members->limit(4)->offset((Yii::$app->request->get('page')-1));
+            //$where_sql .='  LIMIT '.(Yii::$app->request->get('page')-1).',4';
+        }else{
+
+            $members->limit(4);
+        }*/
+
+        $data = $members->offset($pages->offset)
+            ->limit(1)
+            ->all();
+
+       //$data= $members->all();
+
+        //$members = TblPrtMembers::findBySql($sql.$where_sql)->all()->asArray();
+       // print_r($pages); die();
+        return $this->render('index',['parties'=>$parties,'members'=>$data,'profiles'=>$profiles,'pages' => $pages]);
     }
-    
+
+    public function actionParty($id){
+        $this->layout=false;
+
+        $parties= TblPrtLookupType::findOne(['lookup_id'=>2]);
+
+        $profiles= TblPrtLookupType::findOne(['lookup_id'=>1]);
+
+        $members = TblPrtMembers::find()
+            ->joinWith('city')
+            ->joinWith('party')
+            ->joinWith('profileType')
+        ->where(['party.option_id'=>$id]);
+
+
+
+        // $sql="SELECT tbc.*,tblp.option_name as party,tbc.city_name as city_name,tblpt.option_name as profile_type  FROM tbl_prt_members tbm LEFT JOIN tbl_prt_cities tbc ON tbc.city_id=tbm.city_id
+        //      LEFT JOIN tbl_prt_lookup_options tblp ON tblp.option_id=tbm.party_id LEFT JOIN tbl_prt_lookup_options tblpt ON tblpt.option_id=tbm.profile_type_id";
+
+//$where_sql=' WHERE tbm.member_id!=""';
+        $append_where=false;
+        if(!empty(Yii::$app->request->get('name'))){
+
+            // $where_sql .=' AND tbc.name like %'.Yii::$app->request->get('name').'%';
+            $members->where( ['like', TblPrtMembers::tableName().'.name', Yii::$app->request->get('name')]);
+        }
+
+        if(!empty(Yii::$app->request->get('profile'))){
+
+            if($append_where){  $members->andWhere( ['profile.option_id'=> Yii::$app->request->get('profile')]); }else{
+                $members->Where( ['profile.option_id'=>Yii::$app->request->get('profile')]);
+            }
+            //$where_sql .=' AND tblpt.option_id ='.Yii::$app->request->get('profile').'';
+            $append_where=true;
+        }
+
+        if(!empty(Yii::$app->request->get('state'))){
+
+            if($append_where){  $members->andWhere( [TblPrtCities::tableName().'.state_id'=>Yii::$app->request->get('state')]); }else{
+                $members->Where( [TblPrtCities::tableName().'.state_id'=> Yii::$app->request->get('state')]);
+            }
+            // $where_sql .=' AND tbc.state_id ='.Yii::$app->request->get('state').'';
+        }
+
+        $countQuery = clone $members;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>1]);
+        // $pages->limit=1;
+
+        /*if(!empty(Yii::$app->request->get('page')) && Yii::$app->request->get('page')>1 ){
+            $members->limit(4)->offset((Yii::$app->request->get('page')-1));
+            //$where_sql .='  LIMIT '.(Yii::$app->request->get('page')-1).',4';
+        }else{
+
+            $members->limit(4);
+        }*/
+
+        $data = $members->offset($pages->offset)
+            ->limit(1)
+            ->all();
+
+        return $this->render('party',['parties'=>$parties,'members'=>$data,'profiles'=>$profiles,'pages' => $pages]);
+    }
     public function actionBjp()
     { 
         $this->layout=false;

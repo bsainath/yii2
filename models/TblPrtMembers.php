@@ -94,7 +94,7 @@ class TblPrtMembers extends \yii\db\ActiveRecord
      */
     public function getParty()
     {
-        return $this->hasOne(TblPrtLookupOptions::className(), ['option_id' => 'party_id']);
+        return $this->hasOne(TblPrtLookupOptions::className(), ['option_id' => 'party_id'])->from(['party'=>TblPrtLookupOptions::tableName()]);
     }
 
     /**
@@ -102,6 +102,6 @@ class TblPrtMembers extends \yii\db\ActiveRecord
      */
     public function getProfileType()
     {
-        return $this->hasOne(TblPrtLookupOptions::className(), ['option_id' => 'profile_type_id']);
+        return $this->hasOne(TblPrtLookupOptions::className(), ['option_id' => 'profile_type_id'])->from(['profile'=>TblPrtLookupOptions::tableName()]);;
     }
 }

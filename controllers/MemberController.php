@@ -8,11 +8,13 @@ use app\models\TblPrtMembersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * MemberController implements the CRUD actions for TblPrtMembers model.
  */
-class MemberController extends Controller
+class MemberController extends BaseController
 {
     /**
      * @inheritdoc
@@ -66,7 +68,36 @@ class MemberController extends Controller
     {
         $model = new TblPrtMembers();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+            $personel_info = Yii::$app->request->post('info');
+            $model->personel_info=serialize(json_encode($personel_info));
+
+            $personel_int = Yii::$app->request->post('int');
+            $model->personel_interest=serialize(json_encode($personel_int));
+
+            $model->created_by=1;
+
+            if(Yii::$app->request->post())
+
+                $model_upload = new UploadForm();
+            $model_upload->profile_pic = UploadedFile::getInstance($model, 'profile_pic');
+            //print_r($model_upload->profile_pic); die();
+            if (!empty($model_upload->profile_pic)) {
+
+
+                $model->profile_pic=str_replace(' ','_',$model_upload->profile_pic->baseName).'profile.'.$model_upload->profile_pic->extension;
+                if ($model_upload->profile_pic && $model_upload->validate()) {
+                    $model_upload->profile_pic->saveAs('uploads/' . $model->profile_pic);
+                }
+            }
+
+           // print_r(); die();
+
+            if($model->save()){
+
+            }else{
+                print_r($model->errors); die();
+            }
             return $this->redirect(['index']);
         }
 
@@ -85,8 +116,40 @@ class MemberController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $per_info_data=json_decode(unserialize($model->personel_info),true);
+        //print_r($per_info_data); die();
+        if ($model->load(Yii::$app->request->post())) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $personel_info = Yii::$app->request->post('info');
+            $model->personel_info=serialize(json_encode($personel_info));
+
+
+
+            $personel_int = Yii::$app->request->post('int');
+            $model->personel_interest=serialize(json_encode($personel_int));
+
+
+
+
+            $model_upload = new UploadForm();
+            $model_upload->profile_pic = UploadedFile::getInstance($model, 'profile_pic');
+            //print_r($model_upload->profile_pic); die();
+            if (!empty($model_upload->profile_pic)) {
+
+
+                $model->profile_pic=str_replace(' ','_',$model_upload->profile_pic->baseName).'profile.'.$model_upload->profile_pic->extension;
+                if ($model_upload->profile_pic && $model_upload->validate()) {
+                    $model_upload->profile_pic->saveAs('uploads/' . $model->profile_pic);
+                }
+            }
+
+
+           // print_r($personel_int); die();
+            if($model->save()){
+
+            }else{
+                print_r($model->errors); die();
+            }
             return $this->redirect(['view', 'id' => $model->member_id]);
         }
 

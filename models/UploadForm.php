@@ -15,7 +15,7 @@ class UploadForm extends Model
     /**
      * @var UploadedFile|Null file attribute
      */
-    public $file;
+    public $profile_pic;
 
 
     /**
@@ -25,11 +25,20 @@ class UploadForm extends Model
     {
         return [
             [
-                ['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, PNG, JPEG, JPG, TIF, GIF, BMP'
+                ['profile_pic'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, PNG, JPEG, JPG, TIF, GIF, BMP'
             ],
         ];
 
     }//end rules()
 
+   /* public function upload()
+    {
+        if ($this->validate()) {
+            $this->profile_pic->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }*/
 
 }//end class
