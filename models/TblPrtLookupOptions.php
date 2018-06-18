@@ -10,6 +10,7 @@ use Yii;
  * @property int $option_id
  * @property int $lookup_id
  * @property string $option_name
+ * @property string $color_code
  * @property int $created_by
  * @property string $created_date
  *
@@ -37,6 +38,7 @@ class TblPrtLookupOptions extends \yii\db\ActiveRecord
             [['lookup_id', 'created_by'], 'integer'],
             [['created_date'], 'safe'],
             [['option_name'], 'string', 'max' => 100],
+            [['color_code'], 'string', 'max' => 50],
             [['lookup_id'], 'exist', 'skipOnError' => true, 'targetClass' => TblPrtLookupType::className(), 'targetAttribute' => ['lookup_id' => 'lookup_id']],
         ];
     }
@@ -50,6 +52,7 @@ class TblPrtLookupOptions extends \yii\db\ActiveRecord
             'option_id' => 'Option ID',
             'lookup_id' => 'Lookup ID',
             'option_name' => 'Option Name',
+            'color_code' => 'Color Code',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
         ];

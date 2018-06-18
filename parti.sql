@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2018 at 05:44 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Jun 18, 2018 at 05:42 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 5.6.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `party`
+-- Database: `parti`
 --
 
 -- --------------------------------------------------------
@@ -645,6 +645,7 @@ CREATE TABLE `tbl_prt_lookup_options` (
   `option_id` int(11) NOT NULL,
   `lookup_id` int(11) NOT NULL,
   `option_name` varchar(100) NOT NULL,
+  `color_code` varchar(150) DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -653,23 +654,23 @@ CREATE TABLE `tbl_prt_lookup_options` (
 -- Dumping data for table `tbl_prt_lookup_options`
 --
 
-INSERT INTO `tbl_prt_lookup_options` (`option_id`, `lookup_id`, `option_name`, `created_by`, `created_date`) VALUES
-(1, 1, 'MP', 1, '2018-06-10 10:22:21'),
-(2, 1, 'MLA', 1, '2018-06-10 10:22:21'),
-(3, 1, 'MLC', 1, '2018-06-10 10:22:55'),
-(4, 1, 'Central Committee', 1, '2018-06-10 10:22:55'),
-(5, 1, 'State Committee', 1, '2018-06-10 10:23:53'),
-(6, 1, 'District President', 1, '2018-06-10 10:23:53'),
-(7, 2, 'BJP', 1, '2018-06-10 10:24:26'),
-(8, 2, 'Congress', 1, '2018-06-10 10:24:26'),
-(9, 2, 'TRS', 1, '2018-06-10 10:24:52'),
-(10, 2, 'TDP', 1, '2018-06-10 10:24:52'),
-(11, 2, 'YSRCP', 1, '2018-06-10 10:25:28'),
-(12, 2, 'JanaSena', 1, '2018-06-10 10:25:28'),
-(13, 2, 'CPI', 1, '2018-06-10 10:25:50'),
-(14, 2, 'CPM', 1, '2018-06-10 10:25:50'),
-(15, 2, 'Independents', 1, '2018-06-10 10:25:59'),
-(16, 2, 'Nominated Posts', 1, '2018-06-10 10:26:31');
+INSERT INTO `tbl_prt_lookup_options` (`option_id`, `lookup_id`, `option_name`, `color_code`, `created_by`, `created_date`) VALUES
+(1, 1, 'MP', NULL, 1, '2018-06-10 10:22:21'),
+(2, 1, 'MLA', NULL, 1, '2018-06-10 10:22:21'),
+(3, 1, 'MLC', NULL, 1, '2018-06-10 10:22:55'),
+(4, 1, 'Central Committee', NULL, 1, '2018-06-10 10:22:55'),
+(5, 1, 'State Committee', NULL, 1, '2018-06-10 10:23:53'),
+(6, 1, 'District President', NULL, 1, '2018-06-10 10:23:53'),
+(7, 2, 'BJP', '#ff6600', 1, '2018-06-10 10:24:26'),
+(8, 2, 'Congress', 'linear-gradient(to right, #fd7f18,#ffffff, #008e46)', 1, '2018-06-10 10:24:26'),
+(9, 2, 'TRS', '#fe0175', 1, '2018-06-10 10:24:52'),
+(10, 2, 'TDP', '#ffff00', 1, '2018-06-10 10:24:52'),
+(11, 2, 'YSRCP', '#0266b4', 1, '2018-06-10 10:25:28'),
+(12, 2, 'JanaSena', '#cc3333', 1, '2018-06-10 10:25:28'),
+(13, 2, 'CPI', '#de0000', 1, '2018-06-10 10:25:50'),
+(14, 2, 'CPM', '#de0000', 1, '2018-06-10 10:25:50'),
+(15, 2, 'Independents', '#8d54a3', 1, '2018-06-10 10:25:59'),
+(16, 2, 'Nominated Posts', '#6CC437', 1, '2018-06-10 10:26:31');
 
 -- --------------------------------------------------------
 

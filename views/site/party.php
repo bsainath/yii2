@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
+    <link rel="stylesheet" type="text/css" href="<?php use yii\widgets\LinkPager;
+
+echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -105,21 +107,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="heading-text">
+            <div class="heading-text" style="background: <?php echo $party_details->color_code; ?>; ">
                 <img src="images/bjp.png" class="img-responsive bjp-img" alt="">
-                <h3>Bjp</h3>
+                <h3><?php echo $party_details->option_name; ?></h3>
             </div>
             <div class="blog-sidebar">
                 <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked">
-                    <li class="active" style="border-bottom: 1px solid #e0e0e0;"><a href="#btab1" data-toggle="tab" style="padding: 15px 50px;">MP</a></li>
-                    <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab2" data-toggle="tab" style="padding:15px 50px;">MLA</a></li>
-                    <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab3" data-toggle="tab" style="padding:15px 50px;">MLC</a></li>
-                    <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab4" data-toggle="tab" style="padding:15px 50px;"> CENTRAL COMMITTEE</a></li>
-                    <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab5" data-toggle="tab" style="padding:15px 50px;">STATE COMMITTEE</a></li>
-                    <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab6" data-toggle="tab" style="padding:15px 50px;">DISTRICT PRESIDENT </a></li>
-                    <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab7" data-toggle="tab" style="padding:15px 50px;font-size:15px;">SLOGAN </a></li>
-                    <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab8" data-toggle="tab" style="padding:15px 50px;font-size:15px;">MANIFESTO</a></li>
-                    <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab9" data-toggle="tab" style="padding:15px 50px;font-size:15px;">AGENDA</a></li>
+                 <?php foreach ($profiles->tblPrtLookupOptions as $profile) { ?>
+                    <li  style="border-bottom: 1px solid #e0e0e0; cursor: pointer;"><a onclick="searchfilter(<?php echo $profile->option_id;  ?>);" style="padding: 15px 50px;"><?php echo $profile->option_name;  ?></a></li>
+                    <?php } ?>
+                    
                 </ul>
             </div>
             <div class="ads">
@@ -131,121 +128,44 @@
 
             <div class="checkbox-padding">
                 <label class="checkbox-inline checkbox-text"><input type="checkbox" value="" checked="checked" >All</label>
-                <label class="checkbox-inline checkbox-text"><input type="checkbox" value="">Telangana</label>
-                <label class="checkbox-inline checkbox-text"><input type="checkbox" value="">Andhra Pradesh</label>
+                <label class="checkbox-inline checkbox-text"><input type="checkbox" <?php echo Yii::$app->request->get('state')==2?'selected':''; ?> value="32">Telangana</label>
+                <label class="checkbox-inline checkbox-text"><input type="checkbox" <?php echo Yii::$app->request->get('state')==2?'selected':''; ?> value="2">Andhra Pradesh</label>
             </div>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="btab1">
                     <div class="row">
+                    <?php foreach ($members as $member) { ?>
                         <div class="col-md-6">
                             <div class="card hovercard">
-                                <div class="cardheader"></div>
+                                <div class="cardheader" style="background: <?php echo $party_details->color_code; ?>; "></div>
                                 <div class="avatar">
-                                    <img alt="" src="images/bjp-mp.jpg" >
+                                    <img alt="" src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" >
                                 </div>
                                 <div class="info">
                                     <div class="title">
-                                        <a target="_blank" href="" class="mp-text">Kishan Reddy</a>
+                                        <a target="_blank" href="" class="mp-text"><?php echo $member->name; ?></a>
                                     </div>
-                                    <div class="desc">Telangana, MP</div>
-                                    <button class="btn-1">Read More</button>
+                                    <div class="desc"><?php echo $member->city->state_name; ?>, <?php echo $member->profileType->option_name; ?></div>
+                                    <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" class="btn-1" >Read More</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card hovercard">
-                                <div class="cardheader"></div>
-                                <div class="avatar">
-                                    <img alt="" src="images/bjp-mp1.jpg">
-                                </div>
-                                <div class="info">
-                                    <div class="title">
-                                        <a target="_blank" href="" class="mp-text">Hari Babu</a>
-                                    </div>
-                                    <div class="desc">Andhra Pradesh, MP</div>
-                                    <button class="btn-1">Read More</button>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
+                       
 
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card hovercard">
-                                <div class="cardheader"></div>
-                                <div class="avatar">
-                                    <img alt="" src="images/bjp-mp.jpg" >
-                                </div>
-                                <div class="info">
-                                    <div class="title">
-                                        <a target="_blank" href="" class="mp-text">Kishan Reddy</a>
-                                    </div>
-                                    <div class="desc">Telangana, MP</div>
-                                    <button class="btn-1">Read More</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card hovercard">
-                                <div class="cardheader"></div>
-                                <div class="avatar">
-                                    <img alt="" src="images/bjp-mp1.jpg">
-                                </div>
-                                <div class="info">
-                                    <div class="title">
-                                        <a target="_blank" href="" class="mp-text">Hari Babu</a>
-                                    </div>
-                                    <div class="desc">Andhra Pradesh, MP</div>
-                                    <button class="btn-1">Read More</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    
                 </div>
-
-                <div role="tabpanel" class="tab-pane fade in" id="btab2">
-                    <div class="comeing-title"><h3 class="comeing-text">2...</h3></div>
-                </div>
-
-
-                <div role="tabpanel" class="tab-pane fade in" id="btab3">
-                    <div class="comeing-title"><h3 class="comeing-text">3...</h3></div>
-                </div>
-
-
-                <div role="tabpanel" class="tab-pane fade in" id="btab4">
-                    <div class="comeing-title"><h3 class="comeing-text">4...</h3></div>
-                </div>
-
-
-                <div role="tabpanel" class="tab-pane fade in" id="btab5">
-                    <div class="comeing-title"><h3 class="comeing-text">5...</h3></div>
-                </div>
-
-
-                <div role="tabpanel" class="tab-pane fade in" id="btab6">
-                    <div class="comeing-title"><h3 class="comeing-text">6...</h3></div>
-                </div>
-
-                <div role="tabpanel" class="tab-pane fade in" id="btab7">
-                    <div class="comeing-title"><h3 class="comeing-text">7...</h3></div>
-                </div>
-
-                <div role="tabpanel" class="tab-pane fade in" id="btab8">
-                    <div class="comeing-title"><h3 class="comeing-text">8...</h3></div>
-                </div>
-
-                <div role="tabpanel" class="tab-pane fade in" id="btab9">
-                    <div class="comeing-title"><h3 class="comeing-text">9...</h3></div>
-                </div>
-
 
 
             </div>
+            
+             <?php echo LinkPager::widget([
+    'pagination' => $pages,
+]); ?>
 
             <nav aria-label="Page navigation" id="div1">
-                <ul class="pager">
+                <ul class="pager hide">
                     <li>
                         <a href="#" aria-label="Previous">
                             <span aria-hidden="true">«</span>
@@ -272,16 +192,10 @@
             </div>
             <div class="center-menu">
                 <ul style="margin-bottom: 15px;">
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> BJP </a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> CONGRESS </a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> TRS </a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> TDP </a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> YSRCP </a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> JANASENA </a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> CPI</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> CPM </a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> INDEPENDENTS </a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> NOMINATED POSTS </a></li>
+                <?php foreach ($parties->tblPrtLookupOptions as $party){ ?>
+                    <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party?id=<?php echo $party->option_id;?>"><i class="glyphicon glyphicon-chevron-right"></i> <?php echo $party->option_name; ?> </a></li>
+                    <?php } ?>
+                   
                 </ul>
             </div>
 
@@ -297,6 +211,21 @@
 
 
 <script type="text/javascript">
+
+function searchfilter(profile=''){
+    var datastr="?id=<?php echo Yii::$app->request->get('id'); ?>";
+    
+    datastr +="&state=";
+    if(profile!=''){
+        datastr +="&profile="+profile;
+    }
+   
+    <?php if(!empty(Yii::$app->request->get('page'))){ ?>
+    datastr +='&page='+<?php echo Yii::$app->request->get('page'); ?>;
+    <?php } ?>
+window.location="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party"+datastr;
+}
+
     $(document).ready(function(){
 
         $('#itemslider').carousel({ interval: 3000 });
