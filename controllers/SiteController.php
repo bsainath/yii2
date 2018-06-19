@@ -135,9 +135,13 @@ $append_where=false;
 
        //$data= $members->all();
 
+            $all_members = TblPrtMembers::find()
+            ->joinWith('city')
+            ->joinWith('party')
+            ->joinWith('profileType')->all();
         //$members = TblPrtMembers::findBySql($sql.$where_sql)->all()->asArray();
        // print_r($pages); die();
-        return $this->render('index',['parties'=>$parties,'members'=>$data,'profiles'=>$profiles,'pages' => $pages]);
+            return $this->render('index',['parties'=>$parties,'members'=>$data,'profiles'=>$profiles,'all_members'=>$all_members,'pages' => $pages]);
     }
 
     public function actionParty($id){
@@ -190,13 +194,19 @@ $append_where=false;
     { 
         $this->layout=false;
         
+        $party_details=TblPrtLookupOptions::findOne(['option_id'=>$id]);
+        
+        $parties= TblPrtLookupType::findOne(['lookup_id'=>2]);
+        
+        $profiles= TblPrtLookupType::findOne(['lookup_id'=>1]);
+        
         $members = TblPrtMembers::find()
         ->joinWith('city')
         ->joinWith('party')
         ->joinWith('profileType')
         ->where([TblPrtMembers::tableName().'.member_id'=>$id])->one();
         //print_r($members); die();
-        return $this->render('details',['member'=>$members]);
+        return $this->render('details',['member'=>$members,'party_details'=>$party_details,'parties'=>$parties,'profiles'=>$profiles]);
     }
     
     public function actionCongress()

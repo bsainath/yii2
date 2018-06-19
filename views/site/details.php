@@ -44,13 +44,13 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
-                    <img src="images/logo-1.png" alt="">
+                    <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/logo-1.png" alt="">
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse">
                 <div class="nav navbar-nav navbar-right">
-                 <img src="images/ad.jpg" alt="ad">
+                 <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad.jpg" alt="ad">
                 </div>
             </div>
             <!-- /.navbar-collapse -->
@@ -105,25 +105,23 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <div class="heading-text">
-        <img src="images/bjp.png" class="img-responsive bjp-img" alt="">
-        <h3>Bjp</h3>
+      <div class="heading-text" style="background: <?php echo $party_details->color_code; ?>; ">
+        <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/bjp.png" class="img-responsive bjp-img" alt="">
+        <h3><?php echo $party_details->option_name; ?></h3>
       </div>
       <div class="blog-sidebar">
              <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked">
-              <li class="active" style="border-bottom: 1px solid #e0e0e0;"><a href="#btab1" data-toggle="tab" style="padding: 15px 50px;">MP</a></li>
-              <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab2" data-toggle="tab" style="padding:15px 50px;">MLA</a></li>
-              <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab3" data-toggle="tab" style="padding:15px 50px;">MLC</a></li>
-              <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab4" data-toggle="tab" style="padding:15px 50px;"> CENTRAL COMMITTEE</a></li>
-              <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab5" data-toggle="tab" style="padding:15px 50px;">STATE COMMITTEE</a></li>
-              <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab6" data-toggle="tab" style="padding:15px 50px;">DISTRICT PRESIDENT </a></li>
-            <!--   <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab7" data-toggle="tab" style="padding:15px 50px;font-size:15px;">WEB DESIGN </a></li>
-              <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab8" data-toggle="tab" style="padding:15px 50px;font-size:15px;">MULTI MEDIA</a></li>
-              <li style="border-bottom: 1px solid #e0e0e0;"><a href="#btab9" data-toggle="tab" style="padding:15px 50px;font-size:15px;">AFFILIATE</a></li> -->
+             <?php foreach ($profiles->tblPrtLookupOptions as $profile) { ?>
+                    <li  style="border-bottom: 1px solid #e0e0e0; cursor: pointer;">
+                    <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party?id=<?php echo Yii::$app->request->get('id'); ?>&profile=<?php echo $profile->option_id; ?>" style="padding: 15px 50px;"><?php echo $profile->option_name;  ?></a></li>
+                    <?php } ?>
+                    
+              
+            
            </ul>
         </div>
         <div class="ads">
-          <img src="images/ad-1.png" class="img-responsive" alt="">
+          <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad-1.png" class="img-responsive" alt="">
         </div>
     </div>
     <div class="col-md-6 top-margin">
@@ -147,102 +145,52 @@
           <h2>Other Information :</h2>
         </div>
        <div class="para-text">
-          <p>He was elected as member of Telangana Legislative Assembly in 2014 General Elections.</p>
+          <p><?php echo $member->other_info; ?></p>
        </div>
-       <div class="col-md-6">
+       <div class="col-md-12">
           <div class="table-responsive">
+          <?php  $personel_info = json_decode(unserialize($member->personel_info),true); if(!empty($personel_info)){ ?>
             <table class="table">
                <tbody>
-                <tr>
-                  <td class="table-list">Born :</td>
-                  <td class="table-list-1">Hyderabad</td>
+               <?php foreach ($personel_info as $data){ ?>
+                <tr class="col-md-6">
+                  <td class="table-list"><?php echo $data['key']; ?> :</td>
+                  <td class="table-list-1"><?php echo $data['val']; ?></td>
                 </tr>
-                 <tr>
-                  <td class="table-list">Education :</td>
-                  <td class="table-list-1">Degree</td>
-                </tr>
-                 <tr>
-                  <td class="table-list">Family :</td>
-                  <td class="table-list-1">Spouce/Son</td>
-                </tr>
-                <tr>
-                  <td class="table-list">Majority of votes :</td>
-                  <td class="table-list-1">details</td>
-                </tr>
+                <?php } ?>
+               
               </tbody>
             </table>
+            <?php } ?>
           </div>
        </div>
-       <div class="col-md-6">
-            <div class="table-responsive">
-            <table class="table">
-               <tbody>
-                <tr>
-                  <td class="table-list">Residence/office :</td>
-                  <td class="table-list-1">Address</td>
-                </tr>
-                 <tr>
-                  <td class="table-list">Namination details :</td>
-                  <td class="table-list-1">details</td>
-                </tr>
-                 <tr>
-                  <td class="table-list">Category :</td>
-                  <td class="table-list-1">BC</td>
-                </tr>
-                <tr>
-                  <td class="table-list">Preceded by :</td>
-                  <td class="table-list-1">details</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-       </div>
+       
 
        </div>
 
+ <?php  $personel_int = json_decode(unserialize($member->personel_interest),true); if(!empty($personel_int)){ ?>
        <div class="row">
          <div class="persional-head">
           <h3>Personnel interersts :</h3>
          </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
           <div class="table-responsive">
             <table class="table">
                <tbody>
-                <tr>
-                  <td class="table-list">Hobies :</td>
-                  <td class="table-list-1">playing cricket</td>
+               <?php foreach ($personel_int as $data){ ?>
+                <tr class="col-md-6" >
+                  <td class="table-list"><?php echo $data['key']; ?> :</td>
+                  <td class="table-list-1"><?php echo $data['val']; ?></td>
                 </tr>
-                 <tr>
-                  <td class="table-list">Foods :</td>
-                  <td class="table-list-1">Hyderabad Biryani</td>
-                </tr>
-                 <tr>
-                  <td class="table-list">Places :</td>
-                  <td class="table-list-1">Goa</td>
-                </tr>
+                 <?php } ?>
+                 
               </tbody>
             </table>
           </div>
        </div>
-       <div class="col-md-6">
-          <div class="table-responsive">
-            <table class="table">
-               <tbody>
-                 <tr>
-                  <td class="table-list">Favourette stars :</td>
-                  <td class="table-list-1">Pawan Kalyan</td>
-                </tr>
-                <tr>
-                  <td class="table-list">Movie :</td>
-                  <td class="table-list-1">Bahubali</td>
-                </tr>
-              
-              </tbody>
-            </table>
-          </div>
+       
        </div>
-       </div>
-
+<?php } ?>
       
     <div class="row">
        <div class="persional-head">
@@ -260,16 +208,11 @@
       </div>
       <div class="center-menu">
          <ul style="margin-bottom: 15px;">
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> BJP </a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> CONGRESS </a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> TRS </a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> TDP </a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> YSRCP </a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> JANASENA </a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> CPI</a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> CPM </a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> INDEPENDENTS </a></li>
-         <li><a href=""><i class="glyphicon glyphicon-chevron-right"></i> NOMINATED POSTS </a></li>
+          <?php foreach ($parties->tblPrtLookupOptions as $party){ ?>
+                    <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party?id=<?php echo $party->option_id;?>"><i class="glyphicon glyphicon-chevron-right"></i> <?php echo $party->option_name; ?> </a></li>
+                    <?php } ?>
+                    
+        
        </ul> 
       </div>
 

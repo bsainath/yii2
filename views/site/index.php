@@ -18,6 +18,26 @@ use yii\widgets\LinkPager;
             $("#myModal").modal('show');
         });
     </script>
+    <style type="text/css">
+    nav>ul{
+    padding-left: 0;
+    margin: 20px 0;
+    text-align: center;
+    list-style: none;
+    } 
+    
+    nav>ul.pagination>li {
+    display:  inherit!important;
+}
+
+nav>ul>li>a, nav>ul>li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px!important;
+}
+    </style>
 </head>
 <body>
 
@@ -75,13 +95,13 @@ use yii\widgets\LinkPager;
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                <img src="images/logo-1.png" alt="">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/logo-1.png" alt="">
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse">
             <div class="nav navbar-nav navbar-right">
-                <img src="images/ad.jpg" alt="ad">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad.jpg" alt="ad">
             </div>
         </div>
         <!-- /.navbar-collapse -->
@@ -144,7 +164,7 @@ use yii\widgets\LinkPager;
 
             </ul>
 
-            <img src="images/ad-1.png" alt="ad name" class="img-responsive">
+            <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad-1.png" alt="ad name" class="img-responsive">
         </div>
         <div class="col-md-6">
             <div class="tab-content">
@@ -155,14 +175,14 @@ use yii\widgets\LinkPager;
                             <div class="card hovercard">
                                 <div class="cardheader-2"></div>
                                 <div class="avatar">
-                                    <img alt="" src="uploads/<?php echo $member->profile_pic; ?>" >
+                                    <img alt="" src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" >
                                 </div>
                                 <div class="info">
                                     <div class="title">
-                                        <a target="_blank" href="" class="mp-text"><?php echo $member->name; ?></a>
+                                        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" target="_blank" href="" class="mp-text"><?php echo $member->name; ?></a>
                                     </div>
                                     <div class="desc"> <?php echo $member->city->state_name; ?>, <?php echo $member->profileType->option_name; ?>(<?php echo $member->party->option_name; ?>)</div>
-                                    <button class="btn-1">Read More</button>
+                                    <a target="_blank" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" class="btn-1">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -179,35 +199,19 @@ use yii\widgets\LinkPager;
 
             </div>
 
-            <?php echo LinkPager::widget([
+          <nav aria-label="Page navigation" align="center" id="">
+             <?php echo LinkPager::widget([
     'pagination' => $pages,
 ]); ?>
+</nav>
 
-            <nav aria-label="Page navigation" id="div1">
-                <ul class="pager hide">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            
         </div>
         <div class="col-md-3 center-menu-1" >
-            <img src="images/ad-1.png" alt="ad name" class="img-responsive" style="margin-top: 20px;">
+            <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad-1.png" alt="ad name" class="img-responsive" style="margin-top: 20px;">
             <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked" style="margin-top: 15px;">
                 <?php foreach ($profiles->tblPrtLookupOptions as $profile) { ?>
-                    <li class=""><a onclick="searchfilter(<?php echo $profile->option_id; ?>)" style="padding: 5px 10px;"><i class="glyphicon glyphicon-chevron-right"></i> <?php echo $profile->option_name;  ?> </a></li>
+                    <li class="" style="cursor: pointer;"><a onclick="searchfilter(<?php echo $profile->option_id; ?>)" style="padding: 5px 10px;"><i class="glyphicon glyphicon-chevron-right"></i> <?php echo $profile->option_name;  ?> </a></li>
 
 <?php } ?>
 
@@ -233,182 +237,20 @@ use yii\widgets\LinkPager;
     <div class="row">
         <marquee style="  scrollamount="6" scrolldelay="90" direction="left" onmouseover="this.stop()" onmouseout="this.start()">
         <ul class="list-inline list-unstyled r">
+        <?php foreach($all_members as $member){?>
             <li class="productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" class="img-responsive" width="300">
                 <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
+                    <h3><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>"><?php echo $member->name; ?></a></h3>
+                    <h6><?php echo $member->city->state_name.', '.$member->profileType->option_name.'('.$member->party->option_name.')'; ?></h6>
+                    
+                    
                 </div>
             </li>
-            <li class="productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class="productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class="productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class="productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class="productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class=" productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class="productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class="productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class=" productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class=" productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class=" productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
-            <li class=" productbox">
-                <img src="images/kcr-1.jpg" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3>KCR</h3>
-                    <h6>Telangana, CM(TRS)</h6>
-                </div>
-            </li>
+            <?php } ?>
         </ul><br>
         </marquee>
-        <!--     <div class="col-xs-12 col-sm-12 col-md-12">
-              <div class="carousel carousel-showmanymoveone slide" id="itemslider">
-                <div class="carousel-inner">
-
-                  <div class="item active">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                      <a href="#"><img src="images/kcr.jpg" class="img-responsive center-block"></a>
-                      <h4 class="text-center">Kcr</h4>
-                      <h5 class="text-center">CM(TRS)</h5>
-                      <h6 class="text-center">Telangana</h6>
-                    </div>
-                  </div>
-
-                  <div class="item">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                      <a href="#"><img src="images/kcr.jpg" class="img-responsive center-block"></a>
-                      <h4 class="text-center">MAYORAL KOŠULJA</h4>
-                      <h5 class="text-center">4000,00 RSD</h5>
-                      <h6 class="text-center">5000,00 RSD</h6>
-                    </div>
-                  </div>
-
-                  <div class="item">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                      <a href="#"><img src="images/kcr.jpg" class="img-responsive center-block"></a>
-                      <h4 class="text-center">PANTALONE TERI 2</h4>
-                      <h5 class="text-center">4000,00 RSD</h5>
-                      <h6 class="text-center">5000,00 RSD</h6>
-                    </div>
-                  </div>
-
-                  <div class="item">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                      <a href="#"><img src="images/kcr.jpg" class="img-responsive center-block"></a>
-                      <h4 class="text-center">CVETNA HALJINA</h4>
-                      <h5 class="text-center">4000,00 RSD</h5>
-                      <h6 class="text-center">5000,00 RSD</h6>
-                    </div>
-                  </div>
-
-                  <div class="item">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                      <a href="#"><img src="images/kcr.jpg" class="img-responsive center-block"></a>
-                      <h4 class="text-center">MAJICA FOTO</h4>
-                      <h5 class="text-center">4000,00 RSD</h5>
-                      <h6 class="text-center">5000,00 RSD</h6>
-                    </div>
-                  </div>
-
-                  <div class="item">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                      <a href="#"><img src="images/kcr.jpg" class="img-responsive center-block"></a>
-                      <h4 class="text-center">MAJICA MAYORAL</h4>
-                      <h5 class="text-center">4000,00 RSD</h5>
-                      <h6 class="text-center">5000,00 RSD</h6>
-                    </div>
-                  </div>
-
-                    <div class="item">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                      <a href="#"><img src="images/kcr.jpg" class="img-responsive center-block"></a>
-                      <h4 class="text-center">Rathan</h4>
-                      <h5 class="text-center">4000,00 RSD</h5>
-                      <h6 class="text-center">5000,00 RSD</h6>
-                    </div>
-                  </div>
-
-                    <div class="item">
-                    <div class="col-xs-12 col-sm-6 col-md-2">
-                      <a href="#"><img src="images/kcr.jpg" class="img-responsive center-block"></a>
-                      <h4 class="text-center">Sagar</h4>
-                      <h5 class="text-center">4000,00 RSD</h5>
-                      <h6 class="text-center">5000,00 RSD</h6>
-                    </div>
-                  </div>
-
-                </div>
-
-
-
-
-              </div>
-            </div> -->
+       
     </div>
 </div>
 

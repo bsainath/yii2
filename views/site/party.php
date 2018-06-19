@@ -12,6 +12,28 @@ echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <style type="text/css">
+    nav>ul{
+    padding-left: 0;
+    margin: 20px 0;
+    text-align: center;
+    list-style: none;
+    } 
+    
+    nav>ul.pagination>li {
+    display:  inherit!important;
+}
+
+nav>ul>li>a, nav>ul>li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px!important;
+}
+    </style>
+    
 </head>
 <body>
 
@@ -46,13 +68,13 @@ echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                <img src="images/logo-1.png" alt="">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/logo-1.png" alt="">
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse">
             <div class="nav navbar-nav navbar-right">
-                <img src="images/ad.jpg" alt="ad">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad.jpg" alt="ad">
             </div>
         </div>
         <!-- /.navbar-collapse -->
@@ -108,7 +130,7 @@ echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
     <div class="row">
         <div class="col-md-3">
             <div class="heading-text" style="background: <?php echo $party_details->color_code; ?>; ">
-                <img src="images/bjp.png" class="img-responsive bjp-img" alt="">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/bjp.png" class="img-responsive bjp-img" alt="">
                 <h3><?php echo $party_details->option_name; ?></h3>
             </div>
             <div class="blog-sidebar">
@@ -120,7 +142,7 @@ echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
                 </ul>
             </div>
             <div class="ads">
-                <img src="images/ad-1.png" class="img-responsive" alt="">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad-1.png" class="img-responsive" alt="">
             </div>
         </div>
         <div class="col-md-6">
@@ -143,10 +165,10 @@ echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
                                 </div>
                                 <div class="info">
                                     <div class="title">
-                                        <a target="_blank" href="" class="mp-text"><?php echo $member->name; ?></a>
+                                        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" target="_blank"  class="mp-text"><?php echo $member->name; ?></a>
                                     </div>
                                     <div class="desc"><?php echo $member->city->state_name; ?>, <?php echo $member->profileType->option_name; ?></div>
-                                    <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" class="btn-1" >Read More</a>
+                                    <a target="_blank" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" class="btn-1" >Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -160,29 +182,15 @@ echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
 
             </div>
             
+            <nav aria-label="Page navigation" align="center" id="">
              <?php echo LinkPager::widget([
     'pagination' => $pages,
 ]); ?>
+</nav>
 
-            <nav aria-label="Page navigation" id="div1">
-                <ul class="pager hide">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            
+                
+            
 
 
         </div>

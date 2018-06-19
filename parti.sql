@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2018 at 05:42 PM
+-- Generation Time: Jun 19, 2018 at 05:29 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -665,7 +665,7 @@ INSERT INTO `tbl_prt_lookup_options` (`option_id`, `lookup_id`, `option_name`, `
 (8, 2, 'Congress', 'linear-gradient(to right, #fd7f18,#ffffff, #008e46)', 1, '2018-06-10 10:24:26'),
 (9, 2, 'TRS', '#fe0175', 1, '2018-06-10 10:24:52'),
 (10, 2, 'TDP', '#ffff00', 1, '2018-06-10 10:24:52'),
-(11, 2, 'YSRCP', '#0266b4', 1, '2018-06-10 10:25:28'),
+(11, 2, 'YSRCP', 'linear-gradient(to right, #0266b4,#ffffff, #008e46);', 1, '2018-06-10 10:25:28'),
 (12, 2, 'JanaSena', '#cc3333', 1, '2018-06-10 10:25:28'),
 (13, 2, 'CPI', '#de0000', 1, '2018-06-10 10:25:50'),
 (14, 2, 'CPM', '#de0000', 1, '2018-06-10 10:25:50'),
