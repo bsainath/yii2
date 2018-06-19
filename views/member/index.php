@@ -10,26 +10,87 @@ use yii\grid\GridView;
 $this->title = 'Member';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<style>
+.shadow-boxes {
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: 0px 0px 4px 1px #ccc;
+}
+
+.theadcolor {
+    background-color: #16325C;
+    color: white;
+}
+
+</style>
+
 <div class="tbl-prt-members-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+   
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+ <div class="row">
+    <div class="col-md-12" style="padding-top:3px;">
     <p>
-        <?= Html::a('Create Member', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Member', ['create'], ['class' => 'btn btn-success pull-right']) ?>
     </p>
+   </div>
+</div> 
+   
+       
 
+    
+
+
+    
+    <div class="checklists-index">
+    <div class="row">
+        <div class="col-sm-12 margintop10">
+        
+<?php $buttons = '{update} {delete}';?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'options' => ['class' => 'shadow-boxes'],
+       // 'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn','headerOptions' => ['class' => 'theadcolor']],
 
-            'member_id',
-            'name',
-            'party_id',
-            'city_id',
-            'constituency',
+           // 'member_id',
+            
+                   [
+                'attribute' => 'name',
+                'headerOptions' => ['class' => 'theadcolor'],
+                
+                ],
+            
+            [
+                'attribute' => 'party_id',
+                'headerOptions' => ['class' => 'theadcolor'],
+                'format' => 'raw',
+                'header' => 'Party',
+                
+                'value' => function ($model) {
+                
+                return $model->party->option_name;
+                }
+                ],
+           
+            [
+                'attribute' => 'city_id',
+                'headerOptions' => ['class' => 'theadcolor'],
+                'format' => 'raw',
+                'header' => 'City',
+                
+                'value' => function ($model) {
+                
+                return $model->city->city_name;
+                }
+                ],
+            [
+                'attribute' => 'constituency',
+                'headerOptions' => ['class' => 'theadcolor'],
+                
+            ],
             //'profile_type_id',
             //'district',
             //'profile_pic',
@@ -40,8 +101,36 @@ $this->params['breadcrumbs'][] = $this->title;
             //'created_date',
             //'modified_by',
             //'modified_date',
-
-            ['class' => 'yii\grid\ActionColumn'],
+               
+           
+            [
+                'class' => 'yii\grid\ActionColumn',
+                
+                'header' => 'Actions',
+                
+                'headerOptions' => ['class' => 'theadcolor'],
+                'template' => $buttons,
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['member/update', 'id' => $model->member_id], [
+                        'title' => Yii::t('yii', 'Edit'),
+                    ]);
+                    },
+                    'delete'=>function ($url, $model) {
+                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['member/delete', 'id' => $model->member_id], [
+                        'title' => Yii::t('yii', 'Delete'), 'aria-label'=>"Delete", 'data-pjax'=>"0", 'data-confirm'=>"Are you sure you want to delete this item?",
+                        'data-method'=>"post"
+                    ]);
+                    },
+                    
+                    ],
+                    
+                    ],
+                    
         ],
     ]); ?>
+    </div>
+    </div>
+    </div>
+    
 </div>

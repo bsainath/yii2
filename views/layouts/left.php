@@ -30,9 +30,11 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Dashboard', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Users', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    /*['label' => 'Menu Yii2', 'options' => ['class' => 'header']],*/
+                    
+                    ['label' => 'Dashboard', 'icon' => ' fa-dashboard', 'url' => ['/gii']],
+                    ['label' => 'Members', 'icon' => ' fa-users', 'url' => ['/member']],
+                    /*['label' => 'Users', 'icon' => 'dashboard', 'url' => ['/debug']],
                     
                     [
                         'label' => 'Some tools',
@@ -59,7 +61,7 @@
                                 ],
                             ],
                         ],
-                    ],
+                    ],*/
                 ],
             ]
         ) ?>
