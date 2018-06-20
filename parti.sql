@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2018 at 05:29 PM
+-- Generation Time: Jun 20, 2018 at 05:33 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -712,6 +712,10 @@ CREATE TABLE `tbl_prt_members` (
   `personel_info` longtext,
   `personel_interest` longtext,
   `other_info` varchar(500) DEFAULT NULL,
+  `facebook_link` varchar(200) DEFAULT NULL,
+  `twitter_link` varchar(200) DEFAULT NULL,
+  `linkedIn_link` varchar(200) DEFAULT NULL,
+  `instagram_link` varchar(200) DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` int(11) DEFAULT NULL,
@@ -722,10 +726,32 @@ CREATE TABLE `tbl_prt_members` (
 -- Dumping data for table `tbl_prt_members`
 --
 
-INSERT INTO `tbl_prt_members` (`member_id`, `name`, `party_id`, `city_id`, `constituency`, `profile_type_id`, `district`, `profile_pic`, `personel_info`, `personel_interest`, `other_info`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(3, 'erere', 8, 273, 'erewre', 6, 'rewrew', 'WIN_20170609_17_02_22_Proprofile.jpg', 's:126:\"[{\"key\":\"dsadas\",\"val\":\"sadsadsa\"},{\"key\":\"dssad\",\"val\":\"asdsads\"},{\"key\":\"erew\",\"val\":\"werew\"},{\"key\":\"erew\",\"val\":\"werewr\"}]\";', 's:57:\"[{\"key\":\"fdsf\",\"val\":\"dfds\"},{\"key\":\"dfds\",\"val\":\"dddd\"}]\";', 'ewrewrewrrwerewrewr', 1, '2018-06-16 15:31:32', NULL, '2018-06-16 22:55:40'),
-(4, 'dsadas', 9, 274, 'sdsad', 2, 'sdad', 'sda', 's:122:\"[{\"key\":\"ddddddddddd\",\"val\":\"ssssss\"},{\"key\":\"ddd\",\"val\":\"dddd\"},{\"key\":\"dfff\",\"val\":\"fffffffffff\"},{\"key\":\"3\",\"val\":\"3\"}]\";', 's:133:\"[{\"key\":\"aaaaaaaaaaa\",\"val\":\"ddddddddddd\"},{\"key\":\"1\",\"val\":\"1\"},{\"key\":\"2\",\"val\":\"2\"},{\"key\":\"3\",\"val\":\"3\"},{\"key\":\"44\",\"val\":\"44\"}]\";', 'r444', 1, '2018-06-16 15:35:12', NULL, '2018-06-16 21:13:02'),
-(5, 'fdsds', 8, 274, 'dsfd', 2, 'dsfd', 'WIN_20170607_21_20_56_Proprofile.jpg', 's:31:\"[{\"key\":\"sdfgsd\",\"val\":\"fgfd\"}]\";', 's:29:\"[{\"key\":\"fgfg\",\"val\":\"fgfd\"}]\";', 'fefrsf', 1, '2018-06-17 03:38:46', NULL, '2018-06-17 09:11:31');
+INSERT INTO `tbl_prt_members` (`member_id`, `name`, `party_id`, `city_id`, `constituency`, `profile_type_id`, `district`, `profile_pic`, `personel_info`, `personel_interest`, `other_info`, `facebook_link`, `twitter_link`, `linkedIn_link`, `instagram_link`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(4, 'dsadas', 9, 274, 'sdsad', 2, 'sdad', 'sda', 's:122:\"[{\"key\":\"ddddddddddd\",\"val\":\"ssssss\"},{\"key\":\"ddd\",\"val\":\"dddd\"},{\"key\":\"dfff\",\"val\":\"fffffffffff\"},{\"key\":\"3\",\"val\":\"3\"}]\";', 's:133:\"[{\"key\":\"aaaaaaaaaaa\",\"val\":\"ddddddddddd\"},{\"key\":\"1\",\"val\":\"1\"},{\"key\":\"2\",\"val\":\"2\"},{\"key\":\"3\",\"val\":\"3\"},{\"key\":\"44\",\"val\":\"44\"}]\";', 'r444', NULL, NULL, NULL, NULL, 1, '2018-06-16 15:35:12', NULL, '2018-06-16 21:13:02'),
+(5, 'fdsds', 8, 274, 'dsfd', 2, 'dsfd', 'WIN_20170607_21_20_56_Proprofile.jpg', 's:31:\"[{\"key\":\"sdfgsd\",\"val\":\"fgfd\"}]\";', 's:29:\"[{\"key\":\"fgfg\",\"val\":\"fgfd\"}]\";', 'fefrsf', NULL, NULL, NULL, NULL, 1, '2018-06-17 03:38:46', NULL, '2018-06-17 09:11:31'),
+(6, 'fdsf', 7, 14, 'fdds', 2, 'dfsdfds', 'Cancelprofile.png', 's:21:\"[{\"key\":\"\",\"val\":\"\"}]\";', 's:21:\"[{\"key\":\"\",\"val\":\"\"}]\";', '', NULL, NULL, NULL, NULL, 1, '2018-06-20 15:15:50', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_prt_news`
+--
+
+CREATE TABLE `tbl_prt_news` (
+  `news_id` int(11) NOT NULL,
+  `news_title` varchar(1000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `news_description` varchar(5000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `news_type` int(11) DEFAULT '1' COMMENT '1=>political,2=>movies',
+  `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_prt_news`
+--
+
+INSERT INTO `tbl_prt_news` (`news_id`, `news_title`, `news_description`, `news_type`, `created_date`) VALUES
+(1, 'వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది', 'వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది', 1, '2018-06-20 15:03:36'),
+(2, 'వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది', 'వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -851,6 +877,12 @@ ALTER TABLE `tbl_prt_members`
   ADD KEY `members_profile_type_id` (`profile_type_id`);
 
 --
+-- Indexes for table `tbl_prt_news`
+--
+ALTER TABLE `tbl_prt_news`
+  ADD PRIMARY KEY (`news_id`);
+
+--
 -- Indexes for table `tbl_prt_states`
 --
 ALTER TABLE `tbl_prt_states`
@@ -894,7 +926,13 @@ ALTER TABLE `tbl_prt_lookup_type`
 -- AUTO_INCREMENT for table `tbl_prt_members`
 --
 ALTER TABLE `tbl_prt_members`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_prt_news`
+--
+ALTER TABLE `tbl_prt_news`
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_prt_states`
