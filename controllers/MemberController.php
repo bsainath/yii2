@@ -84,7 +84,6 @@ class MemberController extends BaseController
             //print_r($model_upload->profile_pic); die();
             if (!empty($model_upload->profile_pic)) {
 
-
                 $model->profile_pic=str_replace(' ','_',$model_upload->profile_pic->baseName).'profile.'.$model_upload->profile_pic->extension;
                 if ($model_upload->profile_pic && $model_upload->validate()) {
                     $model_upload->profile_pic->saveAs('uploads/' . $model->profile_pic);
@@ -150,7 +149,8 @@ class MemberController extends BaseController
             }else{
                 print_r($model->errors); die();
             }
-            return $this->redirect(['view', 'id' => $model->member_id]);
+            return $this->redirect(['index']);
+           // return $this->redirect(['view', 'id' => $model->member_id]);
         }
 
         return $this->render('update', [

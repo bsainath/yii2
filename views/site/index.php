@@ -173,7 +173,7 @@ nav>ul>li>a, nav>ul>li>span {
                         <?php foreach ($members as $member) { ?>
                         <div class="col-md-6">
                             <div class="card hovercard">
-                                <div class="cardheader-2"></div>
+                                <div class="cardheader-2" style="background:<?php echo $member->party->color_code; ?>"></div>
                                 <div class="avatar">
                                     <img alt="" src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" >
                                 </div>
@@ -187,15 +187,8 @@ nav>ul>li>a, nav>ul>li>span {
                             </div>
                         </div>
                         <?php } ?>
-
-
                     </div>
-
                 </div>
-
-
-
-
 
             </div>
 

@@ -14,26 +14,18 @@
             </div>
         </div>
 
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
+       
 
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    /*['label' => 'Menu Yii2', 'options' => ['class' => 'header']],*/
+                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     
-                    ['label' => 'Dashboard', 'icon' => ' fa-dashboard', 'url' => ['/gii']],
+                   // ['label' => 'Dashboard', 'icon' => ' fa-dashboard', 'url' => ['/gii']],
                     ['label' => 'Members', 'icon' => ' fa-users', 'url' => ['/member']],
+                    ['label' => 'News', 'icon' => ' fa-newspaper-o', 'url' => ['/news']],
+                    ['label' => 'Songs', 'icon' => ' fa-music ', 'url' => ['/songs']],
                     /*['label' => 'Users', 'icon' => 'dashboard', 'url' => ['/debug']],
                     
                     [

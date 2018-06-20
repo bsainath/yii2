@@ -128,7 +128,13 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'other_info')->textInput(['maxlength' => true]) ?>
 
+<?= $form->field($model, 'facebook_link')->textInput(['maxlength' => true]) ?>
 
+<?= $form->field($model, 'twitter_link')->textInput(['maxlength' => true]) ?>
+
+<?= $form->field($model, 'linkedIn_link')->textInput(['maxlength' => true]) ?>
+
+<?= $form->field($model, 'instagram_link')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group " align="center">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

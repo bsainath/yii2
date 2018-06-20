@@ -12,16 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <style>
-.shadow-boxes {
-    border: 1px solid #ccc;
-    padding: 5px;
-    box-shadow: 0px 0px 4px 1px #ccc;
-}
 
-.theadcolor {
-    background-color: #16325C;
-    color: white;
-}
 
 </style>
 
