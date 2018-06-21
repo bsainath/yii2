@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>New Design</title>
+    <title>Our leaders</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php use yii\widgets\LinkPager;
 
-echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
+    echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-    <style type="text/css">
-    nav>ul{
-    padding-left: 0;
-    margin: 20px 0;
-    text-align: center;
-    list-style: none;
-    } 
-    
-    nav>ul.pagination>li {
-    display:  inherit!important;
-}
 
-nav>ul>li>a, nav>ul>li>span {
-    display: inline-block;
-    padding: 5px 14px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 15px!important;
-}
+    <style type="text/css">
+        nav>ul{
+            padding-left: 0;
+            margin: 20px 0;
+            text-align: center;
+            list-style: none;
+        }
+
+        nav>ul.pagination>li {
+            display:  inherit!important;
+        }
+
+        nav>ul>li>a, nav>ul>li>span {
+            display: inline-block;
+            padding: 5px 14px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px!important;
+        }
     </style>
-    
+
 </head>
 <body>
 
@@ -135,10 +135,10 @@ nav>ul>li>a, nav>ul>li>span {
             </div>
             <div class="blog-sidebar">
                 <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked">
-                 <?php foreach ($profiles->tblPrtLookupOptions as $profile) { ?>
-                    <li  style="border-bottom: 1px solid #e0e0e0; cursor: pointer;"><a onclick="searchfilter(<?php echo $profile->option_id;  ?>);" style="padding: 15px 50px;"><?php echo $profile->option_name;  ?></a></li>
+                    <?php foreach ($profiles->tblPrtLookupOptions as $profile) { ?>
+                        <li  style="border-bottom: 1px solid #e0e0e0; cursor: pointer;"><a onclick="searchfilter(<?php echo $profile->option_id;  ?>);" style="padding: 15px 50px;"><?php echo $profile->option_name;  ?></a></li>
                     <?php } ?>
-                    
+
                 </ul>
             </div>
             <div class="ads">
@@ -156,41 +156,41 @@ nav>ul>li>a, nav>ul>li>span {
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="btab1">
                     <div class="row">
-                    <?php foreach ($members as $member) { ?>
-                        <div class="col-md-6">
-                            <div class="card hovercard">
-                                <div class="cardheader" style="background: <?php echo $party_details->color_code; ?>; "></div>
-                                <div class="avatar">
-                                    <img alt="" src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" >
-                                </div>
-                                <div class="info">
-                                    <div class="title">
-                                        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" target="_blank"  class="mp-text"><?php echo $member->name; ?></a>
+                        <?php foreach ($members as $member) { ?>
+                            <div class="col-md-4 col-xs-6">
+                                <div class="card hovercard">
+                                    <div class="cardheader" style="background: <?php echo $party_details->color_code; ?>; "></div>
+                                    <div class="avatar">
+                                        <img alt="" src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" >
                                     </div>
-                                    <div class="desc"><?php echo $member->city->state_name; ?>, <?php echo $member->profileType->option_name; ?></div>
-                                    <a target="_blank" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" class="btn-1" >Read More</a>
+                                    <div class="info">
+                                        <div class="title">
+                                            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" target="_blank"  class="mp-text"><?php echo $member->name; ?></a>
+                                        </div>
+                                        <div class="desc"><?php echo $member->city->state_name; ?>, <?php echo $member->profileType->option_name; ?></div>
+                                        <a target="_blank" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" class="btn-1" >Read More</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <?php } ?>
-                       
+
 
                     </div>
-                    
+
                 </div>
 
 
             </div>
-            
-            <nav aria-label="Page navigation" align="center" id="">
-             <?php echo LinkPager::widget([
-    'pagination' => $pages,
-]); ?>
-</nav>
 
-            
-                
-            
+            <nav aria-label="Page navigation" align="center" id="">
+                <?php echo LinkPager::widget([
+                    'pagination' => $pages,
+                ]); ?>
+            </nav>
+
+
+
+
 
 
         </div>
@@ -200,14 +200,21 @@ nav>ul>li>a, nav>ul>li>span {
             </div>
             <div class="center-menu">
                 <ul style="margin-bottom: 15px;">
-                <?php foreach ($parties->tblPrtLookupOptions as $party){ ?>
-                    <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party?id=<?php echo $party->option_id;?>"><i class="glyphicon glyphicon-chevron-right"></i> <?php echo $party->option_name; ?> </a></li>
+                    <?php foreach ($parties->tblPrtLookupOptions as $party){ ?>
+                        <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party?id=<?php echo $party->option_id;?>"><i class="glyphicon glyphicon-chevron-right"></i> <?php echo $party->option_name; ?> </a></li>
                     <?php } ?>
-                   
+
                 </ul>
             </div>
 
-            <marquee direction="down" class="marquee">A scrolling text created with HTML Marquee element.A scrolling text created with HTML Marquee element.A scrolling text created with HTML Marquee element.A scrolling text created with HTML Marquee element.A scrolling text created with HTML Marquee element.A scrolling text created with HTML Marquee element.A scrolling text created with HTML Marquee element.</marquee>
+            <marquee direction="down" class="marquee news-marquee" scrollamount="3">
+                <ul>
+                    <li> <i class="fa fa-hand-o-right" aria-hidden="true"></i> ???? ????? ? ????.. ??????? ?? ?????? ????????? ?????</li>
+                    <li><i class="fa fa-hand-o-right" aria-hidden="true"></i> ????? ???????? ??????? ????????????? ????????? ???? ???????????…..</li>
+                    <li> <i class="fa fa-hand-o-right" aria-hidden="true"></i> ? ????? ??????? ???? ??????? ?????? ????????? ??????! </li>
+                    <li> <i class="fa fa-hand-o-right" aria-hidden="true"></i> ?????????? ???? ???? ?????????? ?????? ????? ??????!</li>
+                </ul>
+            </marquee>
 
         </div>
     </div>
@@ -220,19 +227,19 @@ nav>ul>li>a, nav>ul>li>span {
 
 <script type="text/javascript">
 
-function searchfilter(profile=''){
-    var datastr="?id=<?php echo Yii::$app->request->get('id'); ?>";
-    
-    datastr +="&state=";
-    if(profile!=''){
-        datastr +="&profile="+profile;
+    function searchfilter(profile=''){
+        var datastr="?id=<?php echo Yii::$app->request->get('id'); ?>";
+
+        datastr +="&state=";
+        if(profile!=''){
+            datastr +="&profile="+profile;
+        }
+
+        <?php if(!empty(Yii::$app->request->get('page'))){ ?>
+        datastr +='&page='+<?php echo Yii::$app->request->get('page'); ?>;
+        <?php } ?>
+        window.location="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party"+datastr;
     }
-   
-    <?php if(!empty(Yii::$app->request->get('page'))){ ?>
-    datastr +='&page='+<?php echo Yii::$app->request->get('page'); ?>;
-    <?php } ?>
-window.location="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party"+datastr;
-}
 
     $(document).ready(function(){
 

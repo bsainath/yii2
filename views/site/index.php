@@ -5,7 +5,7 @@ use yii\widgets\LinkPager;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>New Design</title>
+    <title>Our leaders</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,48 +19,32 @@ use yii\widgets\LinkPager;
         });
     </script>
     <style type="text/css">
-    nav>ul{
-    padding-left: 0;
-    margin: 20px 0;
-    text-align: center;
-    list-style: none;
-    } 
-    
-    nav>ul.pagination>li {
-    display:  inherit!important;
-}
+        nav>ul{
+            padding-left: 0;
+            margin: 20px 0;
+            text-align: center;
+            list-style: none;
+        }
 
-nav>ul>li>a, nav>ul>li>span {
-    display: inline-block;
-    padding: 5px 14px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 15px!important;
-}
+        nav>ul.pagination>li {
+            display:  inherit!important;
+        }
+
+        nav>ul>li>a, nav>ul>li>span {
+            display: inline-block;
+            padding: 5px 14px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px!important;
+        }
     </style>
 </head>
 <body>
 
 <div id="myModal" class="modal fade">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Subscribe our Newsletter</h4>
-            </div>
-            <div class="modal-body">
-                <p class="modal-text">Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control frm-ctrl" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control frm-ctrl" placeholder="Email Address">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-            </div>
-        </div>
+
+        <img src="images/open-add.jpg" class="img-responsive" alt="">
     </div>
 </div>
 
@@ -112,7 +96,7 @@ nav>ul>li>a, nav>ul>li>span {
 <section class="search-banner bg-danger text-white py-5" id="search-banner">
     <div class="container py-5 my-5">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-9">
 
                 <div class="row">
                     <div class="col-md-3">
@@ -125,7 +109,7 @@ nav>ul>li>a, nav>ul>li>span {
                             <select id="search_party"  class="form-control" >
                                 <option value="">... Search for...</option>
                                 <?php foreach ($parties->tblPrtLookupOptions as $party){ ?>
-                                <option <?php echo Yii::$app->request->get('party')==$party->option_id?'selected':''; ?> value="<?php echo $party->option_id;  ?>"><?php echo $party->option_name;  ?></option>
+                                    <option <?php echo Yii::$app->request->get('party')==$party->option_id?'selected':''; ?> value="<?php echo $party->option_id;  ?>"><?php echo $party->option_name;  ?></option>
                                 <?php } ?>
 
                             </select>
@@ -149,7 +133,14 @@ nav>ul>li>a, nav>ul>li>span {
 
 
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <ul class="nav navbar-nav navbar">
+                    <li><a href="">News</a></li>
+                    <li><a href="">Articles</a></li>
+                    <li><a href="">Video </a></li>
+                </ul>
+
+            </div>
         </div>
     </div>
 </section>
@@ -159,7 +150,7 @@ nav>ul>li>a, nav>ul>li>span {
         <div class="col-md-3 center-menu">
             <ul style="margin-bottom: 15px;margin-top: 15px;">
                 <?php foreach ($parties->tblPrtLookupOptions as $party){ ?>
-                <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party?id=<?php echo $party->option_id;  ?>"><i class="glyphicon glyphicon-chevron-right"></i><?php echo $party->option_name;  ?></a></li>
+                    <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/party?id=<?php echo $party->option_id;  ?>"><i class="glyphicon glyphicon-chevron-right"></i><?php echo $party->option_name;  ?></a></li>
                 <?php } ?>
 
             </ul>
@@ -171,34 +162,41 @@ nav>ul>li>a, nav>ul>li>span {
                 <div role="tabpanel" class="tab-pane fade in active" id="btab1">
                     <div class="row">
                         <?php foreach ($members as $member) { ?>
-                        <div class="col-md-6">
-                            <div class="card hovercard">
-                                <div class="cardheader-2" style="background:<?php echo $member->party->color_code; ?>"></div>
-                                <div class="avatar">
-                                    <img alt="" src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" >
-                                </div>
-                                <div class="info">
-                                    <div class="title">
-                                        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" target="_blank" href="" class="mp-text"><?php echo $member->name; ?></a>
+                            <div class="col-md-4 col-xs-6">
+                                <div class="card hovercard">
+                                    <div class="cardheader-2" style="background:<?php echo $member->party->color_code; ?>"></div>
+                                    <div class="avatar">
+                                        <img alt="" src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" >
                                     </div>
-                                    <div class="desc"> <?php echo $member->city->state_name; ?>, <?php echo $member->profileType->option_name; ?>(<?php echo $member->party->option_name; ?>)</div>
-                                    <a target="_blank" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" class="btn-1">Read More</a>
+                                    <div class="info">
+                                        <div class="title">
+                                            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" target="_blank" href="" class="mp-text"><?php echo $member->name; ?></a>
+                                        </div>
+                                        <div class="desc"> <?php echo $member->city->state_name; ?>, <?php echo $member->profileType->option_name; ?>(<?php echo $member->party->option_name; ?>)</div>
+                                        <a target="_blank" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>" class="btn-1">Read More</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <?php } ?>
+
+
                     </div>
+
                 </div>
+
+
+
+
 
             </div>
 
-          <nav aria-label="Page navigation" align="center" id="">
-             <?php echo LinkPager::widget([
-    'pagination' => $pages,
-]); ?>
-</nav>
+            <nav aria-label="Page navigation" align="center" id="">
+                <?php echo LinkPager::widget([
+                    'pagination' => $pages,
+                ]); ?>
+            </nav>
 
-            
+
         </div>
         <div class="col-md-3 center-menu-1" >
             <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad-1.png" alt="ad name" class="img-responsive" style="margin-top: 20px;">
@@ -206,7 +204,7 @@ nav>ul>li>a, nav>ul>li>span {
                 <?php foreach ($profiles->tblPrtLookupOptions as $profile) { ?>
                     <li class="" style="cursor: pointer;"><a onclick="searchfilter(<?php echo $profile->option_id; ?>)" style="padding: 5px 10px;"><i class="glyphicon glyphicon-chevron-right"></i> <?php echo $profile->option_name;  ?> </a></li>
 
-<?php } ?>
+                <?php } ?>
 
                 <!--  <li><a href="#btab9" data-toggle="tab" style="padding: 5px 10px;"><i class="glyphicon glyphicon-chevron-right"></i> INDEPENDENTS </a></li>
                  <li><a href="#btab10" data-toggle="tab" style="padding: 5px 10px;"><i class="glyphicon glyphicon-chevron-right"></i> NOMINATED POSTS </a></li>  -->
@@ -219,7 +217,7 @@ nav>ul>li>a, nav>ul>li>span {
 <div class="container">
 
     <div class="row" id="slider-text">
-        <div class="col-md-6" >
+        <div class="col-md-12 text-center" >
             <h2>Latest Updates</h2>
         </div>
         <div class="col-md-6">
@@ -230,20 +228,20 @@ nav>ul>li>a, nav>ul>li>span {
     <div class="row">
         <marquee style="  scrollamount="6" scrolldelay="90" direction="left" onmouseover="this.stop()" onmouseout="this.start()">
         <ul class="list-inline list-unstyled r">
-        <?php foreach($all_members as $member){?>
-            <li class="productbox">
-                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" class="img-responsive" width="300">
-                <div class="producttitle text-center">
-                    <h3><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>"><?php echo $member->name; ?></a></h3>
-                    <h6><?php echo $member->city->state_name.', '.$member->profileType->option_name.'('.$member->party->option_name.')'; ?></h6>
-                    
-                    
-                </div>
-            </li>
+            <?php foreach($all_members as $member){?>
+                <li class="productbox">
+                    <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" class="img-responsive" width="300">
+                    <div class="producttitle text-center">
+                        <h3><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/details?id=<?php echo $member->member_id; ?>"><?php echo $member->name; ?></a></h3>
+                        <h6><?php echo $member->city->state_name.', '.$member->profileType->option_name.'('.$member->party->option_name.')'; ?></h6>
+
+
+                    </div>
+                </li>
             <?php } ?>
         </ul><br>
         </marquee>
-       
+
     </div>
 </div>
 
@@ -335,7 +333,7 @@ nav>ul>li>a, nav>ul>li>span {
         <?php if(!empty(Yii::$app->request->get('page'))){ ?>
         datastr +='&page='+<?php echo Yii::$app->request->get('page'); ?>;
         <?php } ?>
-window.location="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index"+datastr;
+        window.location="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index"+datastr;
     }
 </script>
 

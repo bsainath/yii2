@@ -1,4 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
+
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
 .navbar-inverse .nav {
     padding: 15px 0;
 
@@ -16,13 +26,21 @@
 a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
     color: #FF0000; /*BACKGROUND color for active*/
 }
-
+.bg-danger {
+    background-color: #f4f4f4;
+}
 .navbar-inverse {
-    background-color: #0f006f;
-    border-color: #030033;
+    background-color: #12a4dd ;
+    border-color: #12a4dd ;
     min-height: 100px;
     border-radius: 0px;
     margin-bottom: 0px;
+}
+
+.navbar-nav>li>a {
+    padding-top: 8px;
+    padding-bottom: 15px;
+    color: #000;
 }
 
 .dropdown-menu > li > a:hover,
@@ -64,16 +82,18 @@ a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
 
 .top-btm-padding{
     padding-top: 20px;
-    padding-bottom: 30px;
+    padding-bottom: 0px;
+}
+.home-marquee {
+    height: 210px;
 }
 
 .center-menu ul{width:100%; padding-left:0;}
-.center-menu ul li{width:100%; min-height:30px; margin-bottom:2px; background:#f4f4f4; list-style:none; padding:10px;
-    font-family:"open sans", serif ;
-    font-size:12px;}
-.center-menu ul li i{font-size:10px; color:#ccc; padding-right:5px;}
+.center-menu ul li{width:100%; min-height:30px; margin-bottom:2px; background:#12a4dd ;; list-style:none; padding:10px;
+    font-size:12px; border-radius: 7px;}
+.center-menu ul li i{font-size:10px; color:#fff; padding-right:5px;}
 
-.center-menu ul li a{color:#4f4f4f; display:block; text-decoration:none; width:100%;}
+.center-menu ul li a{color:#fff; display:block; text-decoration:none; width:100%;}
 .center-menu ul li:nth-child(1){border-right: 5px solid #FF6600}
 .center-menu ul li:nth-child(2){border-right: 5px solid #008e46}
 .center-menu ul li:nth-child(3){border-right: 5px solid #fe0175}
@@ -135,7 +155,7 @@ a:focus, a:hover {
 
 
 #slider-text{
-    padding-top: 20px;
+    text-align: center;
     display: block;
 }
 #slider-text .col-md-6{
@@ -143,20 +163,19 @@ a:focus, a:hover {
 }
 
 #slider-text h2 {
-    font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;
     font-size: 30px;
     letter-spacing: 3px;
     margin: 30px auto;
     padding-left: 40px;
 }
-#slider-text h2::after{
-    border-top: 2px solid #c7c7c7;
-    content: "";
-    position: absolute;
-    bottom: 35px;
-    width: 100%;
-}
+/***#slider-text h2::after{
+  border-top: 2px solid #c7c7c7;
+  content: "";
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+  }*****/
 
 .btm-padding{
     padding-bottom: 30px;
@@ -264,7 +283,35 @@ a.multipage:hover{background:#fff; border:2px #fff solid; color:#333;}
     display:inline-block;
 
 }
+/************************/
+.panel-heading .btn-clickable
+{
+    display: inline-block;
+    margin-top: -25px;
+    font-size: 15px;
+    margin-right: -10px;
+    padding: 4px 10px;
+    border-radius: 4px
+}
 
+
+.panel-heading span
+{
+    margin-top: -23px;
+    font-size: 15px;
+    margin-right: -9px;
+}
+
+div.container div.row div.col-md-12 div.panel div.panel-heading h3.panel-title
+{
+    font-size: 20px;
+    font-weight: 700pt;
+}
+.panel-title {
+    color: #fff;
+}
+
+/********/
 .youtube{margin:0 auto; float:left; margin-right:4px;}
 .youtube a{
     color:#fff;
@@ -281,20 +328,44 @@ a.multipage:hover{background:#fff; border:2px #fff solid; color:#333;}
     display:inline-block;
     transition:0.3s ease;
 }
-
+.news-gallery{
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+    -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+    margin-bottom:20px;
+}
+.heading-text-n{
+    background-color: #12a4dd;
+}
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #12a4dd;
+    border-color: #12a4dd;
+}
+.heading-text-n h3 {
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    padding: 20px 90px;
+    letter-spacing: 2px;
+    position: relative;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
 
 .heading-text{
     background-color: #FF6600;
 }
 
 .heading-text h3 {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
-   /* padding: 20px 90px;*/
-   padding :20px;
-   text-align:center;
+    padding: 20px 90px;
     letter-spacing: 2px;
     position: relative;
     margin-bottom: 0;
@@ -416,7 +487,7 @@ a.multipage:hover{background:#fff; border:2px #fff solid; color:#333;}
 
 /*.heading-text h3::before {
     color: rgb(255, 255, 255);
-    content: "ï�¼";
+    content: "";
     font-family: FontAwesome;
     font-size: 16px;
     font-style: normal;
@@ -668,55 +739,55 @@ a.multipage:hover{background:#fff; border:2px #fff solid; color:#333;}
     text-align: center;
     background-color: rgba(214, 224, 226, 0.2);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    min-height: 335px;
+    min-height: 244px;
 }
 
 .card.hovercard .cardheader {
     background:#ff6600;
     background-size: cover;
-    height: 135px;
+    height: 96px;
 }
 
 .card.hovercard .cardheader-1 {
     background: linear-gradient(to right, #fd7f18,#ffffff, #008e46);;
     background-size: cover;
-    height: 135px;
+    height: 96px;
 }
 
 .card.hovercard .cardheader-2 {
     background: #fe0175;
     background-size: cover;
-    height: 135px;
+    height: 96px;
 }
 
 .card.hovercard .cardheader-3 {
     background: #ffff00;
     background-size: cover;
-    height: 135px;
+    height: 96px;
 }
 
 .card.hovercard .cardheader-4 {
     background: linear-gradient(to right, #0266b4,#ffffff, #008e46);
     background-size: cover;
-    height: 135px;
+    height: 96px;
 }
 
 .card.hovercard .cardheader-5 {
     background: #cc3333;
     background-size: cover;
-    height: 135px;
+    height: 96px;
 }
 
 .card.hovercard .cardheader-6 {
     background: #de0000;
     background-size: cover;
-    height: 135px;
+    height: 96px;
 }
 
 .card.hovercard .cardheader-7 {
     background: #8d54a3;
     background-size: cover;
-    height: 135px;
+    height: 96px;
 }
 .card.hovercard .avatar {
     position: relative;
@@ -725,8 +796,8 @@ a.multipage:hover{background:#fff; border:2px #fff solid; color:#333;}
 }
 
 .card.hovercard .avatar img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     max-width: 150px;
     max-height: 150px;
     -webkit-border-radius: 50%;
@@ -781,11 +852,15 @@ a.multipage:hover{background:#fff; border:2px #fff solid; color:#333;}
     padding: 5px 10px;
     margin-top: 8px;
 }
+.btn-1 a{
+    color: #fff;
+
+}
 
 .mp-text{
     font-family: montserrat,sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .ads{
@@ -840,6 +915,31 @@ a.multipage:hover{background:#fff; border:2px #fff solid; color:#333;}
     font-family: 'Montserrat', sans-serif;
     font-size: 26px;
     padding-bottom: 20px;
+}
+.news-marquee ul{
+    padding: 1px 0px;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.news-marquee ul li i{
+    color: #de0000;
+    padding-right: 5px;
+}
+.panel-primary {
+    border-color: transparent;
+}
+.news-marquee i{
+    color: #de0000;
+    padding-right: 5px;
+}
+.news-marquee ul li {
+    padding-bottom: 12px;
+}
+.list-inline>li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 27px;
 }
 
 footer{
@@ -901,7 +1001,7 @@ footer{
 
 marquee>a, marquee>a:hover{color:#000; text-decoration:none;}
 .productbox {
-    width:250px;
+    width:200px;
     height:auto;
     background-color:#ffffff;
     padding:10px;
@@ -915,8 +1015,8 @@ marquee>a, marquee>a:hover{color:#000; text-decoration:none;}
     transition: all .20s ease-in-out;
 }
 .productbox img{
-    width:235px;
-    height:214px;
+    width:150px;
+    height:150px;
 }
 .producttitle h3 {
     text-overflow: ellipsis;
@@ -948,7 +1048,7 @@ marquee>a, marquee>a:hover{color:#000; text-decoration:none;}
 }
 
 .name-details{
-    font-family: montserrat,sans-serif;
+
     color: #443F3E;
     font-weight: 700;
     font-size: 16px;
@@ -970,9 +1070,20 @@ marquee>a, marquee>a:hover{color:#000; text-decoration:none;}
     border-bottom: 2px solid #c7c7c7;
     padding-bottom: 12px;
 }
-
+@media (min-width: 768px){
+    .modal-dialog {
+        width: 800px;
+        margin: 30px auto;
+    }
+}
+@media (max-width: 640px){
+    .modal-dialog {
+        width: 300px;
+        margin: 10px auto;
+    }
+}
 .para-text p{
-    font-family: montserrat,sans-serif;
+
     font-weight: 400;
     font-size: 15px;
 }
@@ -989,7 +1100,7 @@ marquee>a, marquee>a:hover{color:#000; text-decoration:none;}
 }
 
 .table-list{
-    font-family: montserrat,sans-serif;
+
     color: #443F3E;
     font-weight: 700;
     font-size: 14px;
@@ -1032,4 +1143,11 @@ marquee>a, marquee>a:hover{color:#000; text-decoration:none;}
 }
 .modal-content{
     background: #f5f5f5;
+}
+@media only screen and (max-width: 640px) {
+    .mp-text {
+        font-family: montserrat,sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+    }
 }
