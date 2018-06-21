@@ -136,6 +136,49 @@ use yii\bootstrap\ActiveForm;
 
 <?= $form->field($model, 'instagram_link')->textInput(['maxlength' => true]) ?>
 
+<div class="form-group field-tblprtmembers-personel_info has-success">
+<label class="control-label col-sm-3" for="tblprtmembers-personel_interest">Vedios</label>
+        <div class="col-sm-9 no-padding" id="vediosdiv">
+
+
+
+
+            <?php if($model->vedios){ $vedios=json_decode(unserialize($model->vedios),true); $x=0;foreach ($vedios as $vedio){  ?>
+
+
+                <div  class="<?php echo $x>0?'main_vedios main_vedios_'.$x:'vediosclasscount'; ?> ">
+                    <div class="col-sm-8 no-padding" >
+                        <div class="col-sm-12">
+                            <input type="text" placeholder="link" name="vedio[<?php echo $x; ?>][link]" class="form-control vedios_key" value="<?php echo $vedio['link']; ?>">
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="button"  class="btn <?php echo $x==0?'btn-success':'btn-danger vedios_rm_click' ?>" value=" <?php echo $x==0?'Add':'Remove' ?>" id ="<?php if($x==0){ echo 'clickvediosid'; } ?>" onclick="<?php echo $x==0?'addvediolink();':'removevediolink('.$x.');' ?>">
+                    </div>
+                </div>
+
+
+
+                <?php $x++; }}else{ ?>
+
+
+            <div class="vediosclasscount">
+                <div class="col-sm-8 no-padding" >
+                    <div class="col-sm-12">
+                        <input type="text" placeholder="label" name="vedio[0][link]" class="form-control vedios_key"> 
+                    </div>
+                   
+                </div>
+                <div class="col-sm-3">
+                    <input type="button" class="btn btn-success" value="Add" id ="clickvediosid" onclick="addvediolink();">
+                </div>
+            </div>
+<?php } ?>
+        </div>
+
+</div>
+
     <div class="form-group " align="center">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
         <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl() ?>/member" class="btn btn-danger">Cancel</a>
@@ -197,6 +240,7 @@ function addpersonelint(){
     $("#personelintdiv").append(html);
 }
 
+
 function removepersonelint(i){
     $('.main_personel_int_'+i).remove();
 
@@ -213,10 +257,46 @@ function removepersonelint(i){
     });
 
 }
+
+
+function addvediolink(){
+
+    var i = $('.vedios_key').length;
+
+
+
+    var html = '<div class="main_vedios main_vedios_'+i+'"><div class="col-sm-8 no-padding" > <div class="col-sm-12">';
+    html += '<input type="text" placeholder="link" name="vedio['+i+'][link]" class="form-control vedios_key">';
+    html +='</div> ';
+
+    html +=' </div> <div class="col-sm-3">';
+    html +='<input type="button" class="btn btn-danger vedios_rm_click" value="Remove" onclick="removevediolink('+i+');"> ';
+
+    html +='</div></div>';
+
+    $("#vediosdiv").append(html);
+}
+
+
+function removevediolink(i){
+    $('.main_vedios_'+i).remove();
+
+    var i=0;
+    $(".main_vedios").each(function() {
+        i++;
+       // console.log($(this).find('.per_int_key').attr('name'));
+        $(this).find('.vedios_key').attr('name','vedio['+i+'][link]');
+        $(this).find('.vedios_rm_click').attr('onclick','removevediolink('+i+')');
+        $(this).attr('class','');
+        $(this).addClass('main_vedios main_vedios_'+i);
+
+    });
+
+}
 </script>
 
 <style>
-    .main_personel_info,.main_personel_int{    padding-top: 10px;
+    .main_personel_info,.main_personel_int,.main_vedios{    padding-top: 10px;
         float: left;
         width: 100%;}
 </style>

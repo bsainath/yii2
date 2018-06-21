@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\TblPrtNewsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tbl Prt News';
+$this->title = 'News';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbl-prt-news-index">

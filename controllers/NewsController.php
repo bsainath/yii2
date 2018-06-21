@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * NewsController implements the CRUD actions for TblPrtNews model.
  */
-class NewsController extends Controller
+class NewsController extends BaseController
 {
     /**
      * @inheritdoc
@@ -66,8 +66,17 @@ class NewsController extends Controller
     {
         $model = new TblPrtNews();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->news_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            
+            $model->news_type=1;
+            
+            $model->created_date=date('Y-m-d h:i:s');
+           
+            if($model->save()){
+                
+            }
+            
+            //return $this->redirect(['view', 'id' => $model->news_id]);
         }
 
         return $this->render('create', [
@@ -87,7 +96,7 @@ class NewsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->news_id]);
+           // return $this->redirect(['view', 'id' => $model->news_id]);
         }
 
         return $this->render('update', [

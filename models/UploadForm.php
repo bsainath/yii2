@@ -16,6 +16,7 @@ class UploadForm extends Model
      * @var UploadedFile|Null file attribute
      */
     public $profile_pic;
+    public $imageFiles;
 
 
     /**
@@ -25,12 +26,15 @@ class UploadForm extends Model
     {
         return [
             [
-                ['profile_pic'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, PNG, JPEG, JPG, TIF, GIF, BMP'
-            ],
+                ['profile_pic'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, PNG, JPEG, JPG, TIF, GIF, BMP'],
+            [['imageFiles'], 'file', 'skipOnEmpty' => true, 'maxFiles' => 4],
+            
         ];
 
     }//end rules()
 
+
+    
    /* public function upload()
     {
         if ($this->validate()) {

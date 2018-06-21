@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2018 at 05:33 PM
+-- Generation Time: Jun 21, 2018 at 04:41 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -716,6 +716,7 @@ CREATE TABLE `tbl_prt_members` (
   `twitter_link` varchar(200) DEFAULT NULL,
   `linkedIn_link` varchar(200) DEFAULT NULL,
   `instagram_link` varchar(200) DEFAULT NULL,
+  `vedios` longtext,
   `created_by` int(11) NOT NULL,
   `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` int(11) DEFAULT NULL,
@@ -726,10 +727,10 @@ CREATE TABLE `tbl_prt_members` (
 -- Dumping data for table `tbl_prt_members`
 --
 
-INSERT INTO `tbl_prt_members` (`member_id`, `name`, `party_id`, `city_id`, `constituency`, `profile_type_id`, `district`, `profile_pic`, `personel_info`, `personel_interest`, `other_info`, `facebook_link`, `twitter_link`, `linkedIn_link`, `instagram_link`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
-(4, 'dsadas', 9, 274, 'sdsad', 2, 'sdad', 'sda', 's:122:\"[{\"key\":\"ddddddddddd\",\"val\":\"ssssss\"},{\"key\":\"ddd\",\"val\":\"dddd\"},{\"key\":\"dfff\",\"val\":\"fffffffffff\"},{\"key\":\"3\",\"val\":\"3\"}]\";', 's:133:\"[{\"key\":\"aaaaaaaaaaa\",\"val\":\"ddddddddddd\"},{\"key\":\"1\",\"val\":\"1\"},{\"key\":\"2\",\"val\":\"2\"},{\"key\":\"3\",\"val\":\"3\"},{\"key\":\"44\",\"val\":\"44\"}]\";', 'r444', NULL, NULL, NULL, NULL, 1, '2018-06-16 15:35:12', NULL, '2018-06-16 21:13:02'),
-(5, 'fdsds', 8, 274, 'dsfd', 2, 'dsfd', 'WIN_20170607_21_20_56_Proprofile.jpg', 's:31:\"[{\"key\":\"sdfgsd\",\"val\":\"fgfd\"}]\";', 's:29:\"[{\"key\":\"fgfg\",\"val\":\"fgfd\"}]\";', 'fefrsf', NULL, NULL, NULL, NULL, 1, '2018-06-17 03:38:46', NULL, '2018-06-17 09:11:31'),
-(6, 'fdsf', 7, 14, 'fdds', 2, 'dfsdfds', 'Cancelprofile.png', 's:21:\"[{\"key\":\"\",\"val\":\"\"}]\";', 's:21:\"[{\"key\":\"\",\"val\":\"\"}]\";', '', NULL, NULL, NULL, NULL, 1, '2018-06-20 15:15:50', NULL, NULL);
+INSERT INTO `tbl_prt_members` (`member_id`, `name`, `party_id`, `city_id`, `constituency`, `profile_type_id`, `district`, `profile_pic`, `personel_info`, `personel_interest`, `other_info`, `facebook_link`, `twitter_link`, `linkedIn_link`, `instagram_link`, `vedios`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(4, 'dsadas', 9, 274, 'sdsad', 2, 'sdad', '', 's:122:\"[{\"key\":\"ddddddddddd\",\"val\":\"ssssss\"},{\"key\":\"ddd\",\"val\":\"dddd\"},{\"key\":\"dfff\",\"val\":\"fffffffffff\"},{\"key\":\"3\",\"val\":\"3\"}]\";', 's:171:\"[{\"key\":\"aaaaaaaaaaa\",\"val\":\"ddddddddddd\",\"link\":\"http:\\/\\/parties.localhost\\/\"},{\"key\":\"1\",\"val\":\"1\"},{\"key\":\"2\",\"val\":\"2\"},{\"key\":\"3\",\"val\":\"3\"},{\"key\":\"44\",\"val\":\"44\"}]\";', 'r444', '', '', '', '', NULL, 1, '2018-06-16 15:35:12', NULL, '2018-06-21 20:09:37'),
+(5, 'fdsds', 8, 274, 'dsfd', 2, 'dsfd', '', 's:31:\"[{\"key\":\"sdfgsd\",\"val\":\"fgfd\"}]\";', 's:67:\"[{\"key\":\"fgfg\",\"val\":\"fgfd\",\"link\":\"http:\\/\\/parties.localhost\\/\"}]\";', 'fefrsf', 'http://parties.localhost/', '', '', '', 's:45:\"{\"1\":{\"link\":\"http:\\/\\/parties.localhost\\/\"}}\";', 1, '2018-06-17 03:38:46', NULL, '2018-06-21 20:03:02'),
+(6, 'fdsf', 7, 14, 'fdds', 2, 'dfsdfds', '', 's:21:\"[{\"key\":\"\",\"val\":\"\"}]\";', 's:21:\"[{\"key\":\"\",\"val\":\"\"}]\";', '', '', '', '', '', 's:84:\"[{\"link\":\"http:\\/\\/parties.localhost\\/\"},{\"link\":\"http:\\/\\/parties.localhost\\/123\"}]\";', 1, '2018-06-20 15:15:50', NULL, '2018-06-21 20:11:09');
 
 -- --------------------------------------------------------
 
@@ -752,6 +753,27 @@ CREATE TABLE `tbl_prt_news` (
 INSERT INTO `tbl_prt_news` (`news_id`, `news_title`, `news_description`, `news_type`, `created_date`) VALUES
 (1, 'వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది', 'వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది', 1, '2018-06-20 15:03:36'),
 (2, 'వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది', 'వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది వైఎస్సార్ కాంగ్రెస్ పార్టీ అధినేత జగన్ బ్రాహ్మణ ఆత్మీయ సభకు రాకపోవడం వివాదాస్పదంగా మారింది', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_prt_songs`
+--
+
+CREATE TABLE `tbl_prt_songs` (
+  `song_id` int(11) NOT NULL,
+  `party_id` int(11) NOT NULL,
+  `file_path` varchar(100) NOT NULL,
+  `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_prt_songs`
+--
+
+INSERT INTO `tbl_prt_songs` (`song_id`, `party_id`, `file_path`, `created_date`) VALUES
+(5, 8, 'SampleAudio_0.7mb_8355.mp3', '2018-06-20 22:40:38'),
+(7, 11, 'SampleAudio_0.7mb_11286.mp3', '2018-06-20 22:43:38');
 
 -- --------------------------------------------------------
 
@@ -883,6 +905,13 @@ ALTER TABLE `tbl_prt_news`
   ADD PRIMARY KEY (`news_id`);
 
 --
+-- Indexes for table `tbl_prt_songs`
+--
+ALTER TABLE `tbl_prt_songs`
+  ADD PRIMARY KEY (`song_id`),
+  ADD KEY `fk_party_id_songs` (`party_id`);
+
+--
 -- Indexes for table `tbl_prt_states`
 --
 ALTER TABLE `tbl_prt_states`
@@ -935,6 +964,12 @@ ALTER TABLE `tbl_prt_news`
   MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tbl_prt_songs`
+--
+ALTER TABLE `tbl_prt_songs`
+  MODIFY `song_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `tbl_prt_states`
 --
 ALTER TABLE `tbl_prt_states`
@@ -969,6 +1004,12 @@ ALTER TABLE `tbl_prt_members`
   ADD CONSTRAINT `members_city_id` FOREIGN KEY (`city_id`) REFERENCES `tbl_prt_cities` (`city_id`),
   ADD CONSTRAINT `members_party_id` FOREIGN KEY (`party_id`) REFERENCES `tbl_prt_lookup_options` (`option_id`),
   ADD CONSTRAINT `members_profile_type_id` FOREIGN KEY (`profile_type_id`) REFERENCES `tbl_prt_lookup_options` (`option_id`);
+
+--
+-- Constraints for table `tbl_prt_songs`
+--
+ALTER TABLE `tbl_prt_songs`
+  ADD CONSTRAINT `fk_party_id_songs` FOREIGN KEY (`party_id`) REFERENCES `tbl_prt_lookup_options` (`option_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -22,6 +22,7 @@ use Yii;
  * @property string $twitter_link
  * @property string $linkedIn_link
  * @property string $instagram_link
+ * @property string $vedios
  * @property int $created_by
  * @property string $created_date
  * @property int $modified_by
@@ -49,10 +50,10 @@ class TblPrtMembers extends \yii\db\ActiveRecord
         return [
             [['name', 'party_id', 'city_id', 'profile_type_id', 'created_by'], 'required'],
             [['party_id', 'city_id', 'profile_type_id', 'created_by', 'modified_by'], 'integer'],
-            [['personel_info', 'personel_interest'], 'string'],
+            [['personel_info', 'personel_interest', 'vedios'], 'string'],
             [['created_date', 'modified_date'], 'safe'],
-            [['name','facebook_link', 'twitter_link', 'linkedIn_link', 'instagram_link'], 'string', 'max' => 200],
-            [['facebook_link', 'twitter_link', 'linkedIn_link', 'instagram_link'],'url','defaultScheme' => 'http'],
+            [['name', 'facebook_link', 'twitter_link', 'linkedIn_link', 'instagram_link'], 'string', 'max' => 200],
+            [['facebook_link', 'twitter_link', 'linkedIn_link', 'instagram_link'], 'url'],
             [['constituency', 'district'], 'string', 'max' => 250],
             [['profile_pic'], 'string', 'max' => 150],
             [['other_info'], 'string', 'max' => 500],
@@ -81,8 +82,9 @@ class TblPrtMembers extends \yii\db\ActiveRecord
             'other_info' => 'Other Info',
             'facebook_link' => 'Facebook Link',
             'twitter_link' => 'Twitter Link',
-            'linkedIn_link' => 'Linked In Link',
+            'linkedIn_link' => 'LinkedIn Link',
             'instagram_link' => 'Instagram Link',
+            'vedios' => 'Vedios',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'modified_by' => 'Modified By',
@@ -103,7 +105,7 @@ class TblPrtMembers extends \yii\db\ActiveRecord
      */
     public function getParty()
     {
-        return $this->hasOne(TblPrtLookupOptions::className(), ['option_id' => 'party_id']);
+        return $this->hasOne(TblPrtLookupOptions::className(), ['option_id' => 'party_id'])->from(['party'=>TblPrtLookupOptions::tableName()]);
     }
 
     /**
@@ -111,6 +113,6 @@ class TblPrtMembers extends \yii\db\ActiveRecord
      */
     public function getProfileType()
     {
-        return $this->hasOne(TblPrtLookupOptions::className(), ['option_id' => 'profile_type_id']);
+        return $this->hasOne(TblPrtLookupOptions::className(), ['option_id' => 'profile_type_id'])->from(['profile'=>TblPrtLookupOptions::tableName()]);
     }
 }

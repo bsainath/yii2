@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
+use yii\base\Model;
 
 /**
  * MemberController implements the CRUD actions for TblPrtMembers model.
@@ -74,8 +75,13 @@ class MemberController extends BaseController
 
             $personel_int = Yii::$app->request->post('int');
             $model->personel_interest=serialize(json_encode($personel_int));
+            
+            $vedios = Yii::$app->request->post('vedio');
+            $model->vedios=serialize(json_encode($vedios));
 
-            $model->created_by=1;
+            $model->created_by=\Yii::$app->user->id;
+            
+            $model->created_date=date('Y-m-d h:i:s');
 
             if(Yii::$app->request->post())
 
@@ -115,20 +121,18 @@ class MemberController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $per_info_data=json_decode(unserialize($model->personel_info),true);
-        //print_r($per_info_data); die();
+        //$per_info_data=json_decode(unserialize($model->vedios),true);
+      //  print_r($per_info_data); die();
         if ($model->load(Yii::$app->request->post())) {
 
             $personel_info = Yii::$app->request->post('info');
             $model->personel_info=serialize(json_encode($personel_info));
 
-
-
             $personel_int = Yii::$app->request->post('int');
             $model->personel_interest=serialize(json_encode($personel_int));
 
-
-
+            $vedios = Yii::$app->request->post('vedio');
+            $model->vedios=serialize(json_encode($vedios));
 
             $model_upload = new UploadForm();
             $model_upload->profile_pic = UploadedFile::getInstance($model, 'profile_pic');
