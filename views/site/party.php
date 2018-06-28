@@ -130,7 +130,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="heading-text" style="background: <?php echo $party_details->color_code; ?>; ">
-                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/bjp.png" class="img-responsive bjp-img" alt="">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/<?php echo str_replace(' ','_',strtolower($party_details->option_name));  ?>.png" class="img-responsive bjp-img" alt="">
                 <h3><?php echo $party_details->option_name; ?></h3>
             </div>
             <div class="blog-sidebar">

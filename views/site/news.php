@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/publicsite.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -44,13 +44,13 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo-1.png" alt="">
+                    <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/logo-1.png" alt="">
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse">
                 <div class="nav navbar-nav navbar-right">
-                 <img src="images/ad.jpg" alt="ad">
+                 <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad.jpg" alt="ad">
                 </div>
             </div>
             <!-- /.navbar-collapse -->
@@ -99,9 +99,9 @@
         </div>
         <div class="col-md-3">
           <ul class="nav navbar-nav navbar">
-            <li><a href="news.html">News</a></li>
-            <li><a href="news.html">Articles</a></li>
-            <li><a href="news.html">Video </a></li>   
+            <li><a href="#">News</a></li>
+            <li><a href="#">Articles</a></li>
+            <li><a href="#">Video </a></li>
           </ul>
 
         </div>
@@ -128,7 +128,7 @@
            </ul>
         </div>
         <div class="ads">
-          <img src="images/ad-1.png" class="img-responsive" alt="">
+          <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/ad-1.png" class="img-responsive" alt="">
         </div>
     </div>
     <div class="col-md-9">
@@ -143,11 +143,10 @@
                           <h4 class="panel-title"> POLITICAL NEWS</h4>
                         </div>
                     <ul class="list-group news-marquee">
-                       <a href="#" class="list-group-item"> <i class="fa fa-hand-o-right" aria-hidden="true"></i> అమెరికా నివేదిక..హిందుత్వ వాదుల సీరియస్</a>
-                       <a href="#" class="list-group-item"><i class="fa fa-hand-o-right" aria-hidden="true"></i> హెచ్4 వీసా...ట్రంప్ షాకుల‌కు బ్రేకు లేదు</a>
-                       <a href="#" class="list-group-item"><i class="fa fa-hand-o-right" aria-hidden="true"></i> లోకేష్ ట్వీట్ల గుట్టు విప్పిన రోజా</a>
-                       <a href="#" class="list-group-item"><i class="fa fa-hand-o-right" aria-hidden="true"></i> గ్రీన్ కార్డ్..ఓ జీవిత‌కాలం లేటు</a>
-                       <a href="#" class="list-group-item"><i class="fa fa-hand-o-right" aria-hidden="true"></i> చెరువు మీద అలిగిన బాబు..ఐవైఆర్ సెటైర్</a>
+                        <?php foreach ($news as $each_news){ ?>
+                       <a href="#" class="list-group-item"> <i class="fa fa-hand-o-right" aria-hidden="true"></i> <?php echo $each_news->news_title; ?></a>
+                        <?php } ?>
+
                    </ul>
                   </div>
                  </div>
@@ -172,47 +171,24 @@
                <div role="tabpanel" class="tab-pane fade in" id="btab2">
                    <div class="comeing-title"><h3 class="comeing-text">Pictures</h3></div>               
                  <div class="row">
-                   <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/bjp-mp.jpg" /></div>
-                   <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/kcr.jpg" /></div>
-                   <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/janasena-1.jpg" /></div>
-                   <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/bjp-mp1.jpg" /></div>
+                     <?php foreach ($members as $member){ ?>
+                   <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/uploads/<?php echo $member->profile_pic; ?>" /></div>
+                     <?php } ?>
+
                  </div>
-                 <div class="row">
-                 <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/trs-mp-1.jpg" /></div>
-                 <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/ysrcp-mp-1.png" /></div>
-                 <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/trs-mp-2.jpg" /></div>
-                <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/congress-mp1.jpg" /></div>
-                </div>
-                 <div class="row">
-                 <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/tdp-mp-1.jpg" /></div>
-                 <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/tdp-mp-2.jpg" /></div>
-                 <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/ysrcp-mp-2.jpg" /></div>
-                <div class="col-md-3 col-sm-4 col-xs-6"><img class="img-responsive news-gallery" src="images/janasena-1.jpg" /></div>
-                </div>
+
            </div>
                 <div role="tabpanel" class="tab-pane fade in" id="btab3">
                     <div class="comeing-title"><h3 class="comeing-text">TRS Songs</h3></div>
                     <div>
+                        <?php foreach ($songs as $song){ ?>
                        <audio controls>
-                           <source src="song-4.ogg" type="audio/ogg">
-                           <source src="song-4.mp3" type="audio/mpeg">
+                           <source src="<?php echo Yii::$app->getUrlManager()->getBaseUrl().'/uploads/songs/'.$song->file_path; ?>" type="audio/ogg">
+                           <source src="<?php echo Yii::$app->getUrlManager()->getBaseUrl().'/uploads/songs/'.$song->file_path; ?>"  type="audio/mpeg">
                            Your browser does not support the audio tag.
                        </audio>
-                        <audio controls>
-                           <source src="song-3.ogg" type="audio/ogg">
-                           <source src="song-3.mp3" type="audio/mpeg">
-                           Your browser does not support the audio tag.
-                       </audio>
-                       <audio controls>
-                           <source src="song.ogg" type="audio/ogg">
-                           <source src="song.mp3" type="audio/mpeg">
-                           Your browser does not support the audio tag.
-                       </audio>
-                        <audio controls>
-                           <source src="song-2.ogg" type="audio/ogg">
-                           <source src="song-2.mp3" type="audio/mpeg">
-                           Your browser does not support the audio tag.
-                       </audio>
+                        <?php } ?>
+
                     </div>
                 </div>
 
@@ -313,16 +289,15 @@
                   <div class="comeing-title"><h3 class="comeing-text"> Video Library  </h3></div>
 
                   <div class="row">
-                    <div class="col-md-4"><iframe width="250" height="250" src="https://www.youtube.com/embed/2ZR84oVAegA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
-                    <div class="col-md-4"><iframe width="250" height="250" src="https://www.youtube.com/embed/ku0CKvhJphs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div> 
-                    <div class="col-md-4"><iframe width="250" height="250" src="https://www.youtube.com/embed/LdyzqZICtsU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>              
-                  </div>   
 
-                  <div class="row">                   
-                    <div class="col-md-4"><iframe width="250" height="250" src="https://www.youtube.com/embed/ku0CKvhJphs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
-                    <div class="col-md-4"><iframe width="250" height="250" src="https://www.youtube.com/embed/HuWQGDTpJts" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
-                    <div class="col-md-4"><iframe width="250" height="250" src="https://www.youtube.com/embed/LdyzqZICtsU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div> 
-                  </div>  
+          <?php foreach ($members as $member){
+          $vedios = json_decode(unserialize($member->vedios),true); foreach ($vedios as $vedio){
+              ?>
+                  <div class="col-md-4"><iframe width="250" height="250" src="<?php echo $vedio['link'];?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+                      <?php } } ?>
+ </div>
+
+
 
                 </div>
 

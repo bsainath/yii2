@@ -37,7 +37,7 @@ class TblPrtSongs extends \yii\db\ActiveRecord
             [['created_date'], 'safe'],
             [['file_path'], 'string', 'max' => 100],
             [['party_id'], 'exist', 'skipOnError' => true, 'targetClass' => TblPrtLookupOptions::className(), 'targetAttribute' => ['party_id' => 'option_id']],
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'mp3', 'maxFiles' => 4],
+            [['imageFiles'], 'file', 'skipOnEmpty' => false,  'maxFiles' => 4],
         ];
     }
 

@@ -106,7 +106,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="heading-text" style="background: <?php echo $party_details->color_code; ?>; ">
-                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/bjp.png" class="img-responsive bjp-img" alt="">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/images/<?php echo str_replace(' ','_',strtolower($party_details->option_name));  ?>.png" class="img-responsive bjp-img" alt="">
                 <h3><?php echo $party_details->option_name; ?></h3>
             </div>
             <div class="blog-sidebar">
@@ -197,25 +197,25 @@
                     <h3>Social Media :</h3>
                 </div>
                 <div class="col-xs-2 col-sm-2">
-                    <a href="#" class="btn btn-lg btn-block onl_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                    <a href="<?php echo $member->facebook_link; ?>" class="btn btn-lg btn-block onl_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
                         <i class="fa fa-facebook fa-2x"></i>
                         <span class="hidden-xs"></span>
                     </a>
                 </div>
                 <div class="col-xs-2 col-sm-2">
-                    <a href="#" class="btn btn-lg btn-block onl_btn-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+                    <a href="<?php echo $member->twitter_link; ?>" class="btn btn-lg btn-block onl_btn-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
                         <i class="fa fa-twitter fa-2x"></i>
                         <span class="hidden-xs"></span>
                     </a>
                 </div>
                 <div class="col-xs-2 col-sm-2">
-                    <a href="#" class="btn btn-lg btn-block onl_btn-linkedin" data-toggle="tooltip" data-placement="top" title="LinkedIn">
+                    <a href="<?php echo $member->linkedIn_link; ?>" class="btn btn-lg btn-block onl_btn-linkedin" data-toggle="tooltip" data-placement="top" title="LinkedIn">
                         <i class="fa fa-linkedin fa-2x"></i>
                         <span class="hidden-xs"></span>
                     </a>
                 </div>
                 <div class="col-xs-2 col-sm-2">
-                    <a href="#" class="btn btn-lg btn-block onl_btn-linkedin" data-toggle="tooltip" data-placement="top" title="Instagram">
+                    <a href="<?php echo $member->instagram_link; ?>" class="btn btn-lg btn-block onl_btn-linkedin" data-toggle="tooltip" data-placement="top" title="Instagram">
                         <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
                         <span class="hidden-xs"></span>
                     </a>

@@ -80,11 +80,11 @@ class SongsController extends BaseController
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             
             
-           //  print_r($form_upload); die();
+          //   print_r($form_upload); die();
             $files= $model->upload();
            // print_r($files); die();
            foreach ($files as $file){
-               $model->imageFiles ='';
+             //  $model->imageFiles ='';
                $model->isNewRecord=true;
                $model->song_id=null;
               // echo $file; die();

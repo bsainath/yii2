@@ -135,9 +135,9 @@ use yii\widgets\LinkPager;
             </div>
             <div class="col-md-3">
                 <ul class="nav navbar-nav navbar">
-                    <li><a href="">News</a></li>
-                    <li><a href="">Articles</a></li>
-                    <li><a href="">Video </a></li>
+                    <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/news">News</a></li>
+                    <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/news">Articles</a></li>
+                    <li><a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/site/news">Video </a></li>
                 </ul>
 
             </div>

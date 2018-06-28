@@ -57,8 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     
                 
                 return '<audio controls>
-  <source src="uploads/songs/'.$model->file_path.'" type="audio/ogg">
-  <source src="uploads/songs/'.$model->file_path.'" type="audio/mpeg">
+  <source src="'.Yii::$app->getUrlManager()->getBaseUrl().'/uploads/songs/'.$model->file_path.'" type="audio/ogg">
+  <source src="'.Yii::$app->getUrlManager()->getBaseUrl().'/uploads/songs/'.$model->file_path.'" type="audio/mpeg">
   Your browser does not support the audio tag.
 </audio> ' ;
                 }

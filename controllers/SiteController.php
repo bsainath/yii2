@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\TblPrtCities;
 use app\models\TblPrtLookupType;
 use app\models\TblPrtMembers;
+use app\models\TblPrtNews;
+use app\models\TblPrtSongs;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -195,10 +197,18 @@ class SiteController extends Controller
         return $this->render('details',['member'=>$members,'party_details'=>$party_details,'parties'=>$parties,'profiles'=>$profiles]);
     }
     
-    public function actionCongress()
+    public function actionNews()
     {
         $this->layout=false;
-        return $this->render('congress');
+
+        $news=TblPrtNews::find()->all();
+        $members=TblPrtMembers::find()->all();
+        $songs=TblPrtSongs::find()->all();
+
+
+
+       // print_r($news);die();
+        return $this->render('news',['news'=>$news,'members'=>$members,'songs'=>$songs]);
     }
     
     
