@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\TblPrtAds;
 use Yii;
 use app\models\TblPrtNews;
 use app\models\TblPrtNewsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * NewsController implements the CRUD actions for TblPrtNews model.
@@ -132,5 +135,71 @@ class NewsController extends BaseController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionAdd(){
+        $model=TblPrtAds::find()->one();
+        if(empty($adds)){
+            $model=new TblPrtAds();
+        }
+
+
+
+        if(Yii::$app->request->isPost) {
+
+            $model->created_by=\Yii::$app->user->id;
+
+            $model->created_date=date('Y-m-d h:i:s');
+
+            $model_upload = new UploadForm();
+            $model_upload->opening_add = UploadedFile::getInstance($model, 'opening_add');
+            //print_r($model_upload->profile_pic); die();
+            if (!empty($model_upload->opening_add)) {
+
+                $model->opening_add = str_replace(' ', '_', $model_upload->opening_add->baseName) .mt_rand(10,100). 'add.' . $model_upload->opening_add->extension;
+                if ($model_upload->opening_add && $model_upload->validate()) {
+                    $model_upload->opening_add->saveAs('uploads/add/' . $model->opening_add);
+                 }
+            }
+
+            $model_upload = new UploadForm();
+            $model_upload->header_add = UploadedFile::getInstance($model, 'header_add');
+            //print_r($model_upload->profile_pic); die();
+            if (!empty($model_upload->header_add)) {
+
+                $model->header_add = str_replace(' ', '_', $model_upload->header_add->baseName) .mt_rand(10,100). 'add.' . $model_upload->header_add->extension;
+                if ($model_upload->header_add && $model_upload->validate()) {
+                    $model_upload->header_add->saveAs('uploads/add/' . $model->header_add);
+                }
+            }
+
+            $model_upload = new UploadForm();
+            $model_upload->top_add = UploadedFile::getInstance($model, 'top_add');
+            //print_r($model_upload->profile_pic); die();
+            if (!empty($model_upload->top_add)) {
+
+                $model->top_add = str_replace(' ', '_', $model_upload->top_add->baseName) .mt_rand(10,100). 'add.' . $model_upload->top_add->extension;
+                if ($model_upload->top_add && $model_upload->validate()) {
+                    $model_upload->top_add->saveAs('uploads/add/' . $model->top_add);
+                }
+            }
+            $model_upload = new UploadForm();
+            $model_upload->bottom_add = UploadedFile::getInstance($model, 'bottom_add');
+            //print_r($model_upload->profile_pic); die();
+            if (!empty($model_upload->bottom_add)) {
+
+                $model->bottom_add = str_replace(' ', '_', $model_upload->bottom_add->baseName) .mt_rand(10,100). 'add.' . $model_upload->bottom_add->extension;
+                if ($model_upload->bottom_add && $model_upload->validate()) {
+                    $model_upload->bottom_add->saveAs('uploads/add/' . $model->bottom_add);
+                }
+            }
+
+            if($model->save()){
+
+            }else{
+                print_r($model->errors); die();
+            }
+        }
+        return $this->render('adds',['model'=>$model]);
     }
 }

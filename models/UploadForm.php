@@ -17,6 +17,10 @@ class UploadForm extends Model
      */
     public $profile_pic;
     public $imageFiles;
+    public $opening_add;
+    public $header_add;
+    public $top_add;
+    public $bottom_add;
 
 
     /**
@@ -26,7 +30,7 @@ class UploadForm extends Model
     {
         return [
             [
-                ['profile_pic'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, PNG, JPEG, JPG, TIF, GIF, BMP'],
+                ['profile_pic','opening_add','header_add','top_add', 'bottom_add'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, PNG, JPEG, JPG, TIF, GIF, BMP'],
             [['imageFiles'], 'file', 'skipOnEmpty' => true, 'maxFiles' => 4],
             
         ];
